@@ -11,7 +11,7 @@ Time to learn how to create and load levels.
 Setup the ground
 ================
 
-The levels we are going to load minutes from now need to stand on a
+The levels we are going to load a few minutes from now need to stand on a
 stable ground in the Gameplay scene. So the first thing we will do is to
 add the *ground* to the *CCPhysicsNode* and setup a physics body for it.
 
@@ -41,7 +41,7 @@ Now we get to solve our first little puzzle. Problem: we want to be able
 to have an unlimited amount of levels in our game. Therefore we don't
 want the game mechanics (shooting, collision detection, etc.) to be part
 of the levels. Otherwise we would be in big trouble if we wanted to
-change them, we'd need to apply the changes to every level.
+change them -- we'd need to apply the changes to every level.
 
 This means we are not going to add the information about a level
 directly to our *Gameplay.ccb*. A better solution is to define an area
@@ -62,7 +62,7 @@ Apply the following dimensions: x:469, y:47, width:490, height:275:
 This node will be the container for the levels we will be loading later
 on. The actual loading will happen in code, so create a code connection
 to make the *levelNode* accessible from the *Gameplay* class. Call the
-variable "\_levelNode".
+variable "levelNode".
 
 **Create a Level**
 
@@ -74,7 +74,7 @@ Your first level and the folder structure should look like this:
 ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_Levels.png)
 
 Congratulations, this is your first level! Now add some content. Pull
-multiple *seal.ccb* files and different images of ice blocks
+multiple *Seal.ccb* files and different images of ice blocks
 (*tallblock.png*, etc) to this scene. Be sure to place some items at the
 very left edge of the level (this way they will be visible when we load
 the level - even before we have implemented a scrolling mechanism). Your
@@ -85,17 +85,16 @@ scene could look somewhat like this:
 **Add level loading code**
 
 Now we are going to add some surprisingly simple level loading code.
-Open *Gameplay.m* in Xcode.
+Open *Gameplay.swift* in Xcode.
 
-Add a member variable within the @implementation block (where you added
-the *\_physicsNode* variable):
+Add a member variable after the opening curly brace:
 
-      CCNode *_levelNode;
+	weak var levelNode: CCNode!
 
 and add these lines to the end of the method *didLoadFromCCB*:
 
-    CCScene *level = [CCBReader load:@"Levels/Level1"];
-    [_levelNode addChild:level];
+    let level: CCNode = CCBReader.load("Levels/Level1")
+    levelNode.addChild(level)
 
 This will load *level1* and add it as a child to the levelNode. When you
 run your game you should see your level appear in the Gameplay scene:
@@ -123,12 +122,12 @@ that shall be followed; optionally you can also define world boundaries,
 so that the camera does not scroll outside of your background image.
 
 Add these lines to the end of the *launchPenguin* method in
-*Gameplay.m*:
+*Gameplay.swift*:
 
     // ensure followed object is in visible are when starting
-    self.position = ccp(0, 0);
-    CCActionFollow *follow = [CCActionFollow actionWithTarget:penguin worldBoundary:self.boundingBox];
-    [self runAction:follow];
+    position = CGPoint.zeroPoint
+    let actionFollow = CCActionFollow(target: penguin, worldBoundary: boundingBox())
+    runAction(actionFollow)
 
 We are telling the Gameplay scene to act as a camera following the
 penguin. We also say that the camera shall not leave our scene by using
@@ -170,12 +169,12 @@ the screen. Set a title and a code connection for the button.
 
 The implementation is pretty easy. We are just going to reload the
 entire scene utilizing the *CCDirector*. Add this implementation to
-*Gameplay.m*:
+*Gameplay.swift*:
 
-    - (void)retry {
-        // reload this level
-        [[CCDirector sharedDirector] replaceScene: [CCBReader loadAsScene:@"Gameplay"]];
-    }
+	func retry() {
+		let gameplayScene: CCScene = CCBReader.loadAsScene("Gameplay")
+		CCDirector.sharedDirector().replaceScene(gameplayScene)
+	}
 
 Great! Now run the app and make use of the new "Retry" button. Can you
 foresee what problem is going to come up? Right! The button is part of
@@ -216,23 +215,22 @@ Fixing the level reset, part 2
 
 Figured it out? Right, we need to scroll the contentNode instead of the
 Gameplay scene! Add a code connection for the contentNode, so that we
-can access it from *Gameplay.m*.
+can access it from *Gameplay.swift*.
 
-When the code connection is set up, open *Gameplay.m* in Xcode. Add the
+When the code connection is set up, open *Gameplay.swift* in Xcode. Add the
 member variable you need for the code connection. Then modify the actual
 scrolling code. Make the new content node perform the action instead of
 the Gameplay Scene. Your code for setting up and performing the action
 should now look like this:
 
     // ensure followed object is in visible are when starting
-    self.position = ccp(0, 0);
-    CCActionFollow *follow = [CCActionFollow actionWithTarget:penguin worldBoundary:self.boundingBox];
-    [_contentNode runAction:follow];
+    position = CGPoint.zeroPoint
+    let actionFollow = CCActionFollow(target: penguin, worldBoundary: boundingBox())
+    contentNode.runAction(actionFollow)
 
 Now the content Node is scrolling and not the complete Gameplay scene.
 Since the content Node is only used to structure the scene and doesn't
-have a content size, we still use the bounding box of the Gameplay scene
-(*self*) to define the world boundaries.
+have a content size, we still use the bounding box of the Gameplay scene to define the world boundaries.
 
 If you run the game now, the button should stay in the top left corner
 and allow you to easily restart the level at any time.

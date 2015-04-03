@@ -56,8 +56,8 @@ we need to set up some code connections.
 First, set the custom class of the *Gameplay* root node, CCNode, to
 "Gameplay". Then set up a member variable link for the CCPhysicsNode. We
 want to assign it to *Doc root var* with the variable name
-"\_physicsNode". This will link this physics node to a variable called
-"\_physicsNode" of the class "Gameplay":
+"physicsNode". This will link this physics node to a variable called
+"physicsNode" of the class "Gameplay":
 
 ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Physic_CodeOutlets.gif)
 
@@ -65,54 +65,53 @@ Now we will be able to access the physics node from code. That will
 allow us to add the fired penguins to the scene.
 
 Now create another code connection - all on your own. We want the
-*catapultarm* to be accessible through a variable called *\_catapultArm*
+*catapultarm* to be accessible through a variable called *catapultArm*
 in the *Gameplay* class.
 
 **In Xcode:**
 
 Now we will need to switch to Xcode to implement a firing method. First,
 create a new class *Gameplay*. That class needs to be a subclass of
-*CCNode*. When saving the class, make sure it is in the *Source* folder
-of your project. Add the member variables *\_physicsNode* and
-*\_catapultArm* to *Gameplay.m*:
+*CCNode* and language *Swift*. When saving the class, make sure it is in the *Source* folder
+of your project. Add the member variables *physicsNode* and
+*catapultArm* to *Gameplay.swift*:
 
-    @implementation Gameplay {
-        CCPhysicsNode *_physicsNode;
-        CCNode *_catapultArm;
-    }
+	weak var physicsNode: CCPhysicsNode!
+	weak var catapultArm: CCNode!
+
+<!--explain explicitly unwrapped optionals & let-->
 
 The simple shooting mechanism will be triggered whenever a player
 touches the screen. We are going to implement this touch handling in
 code.
 
-Add these three methods to *Gameplay.m* to activate touch handling,
+Add these three methods to *Gameplay.swift* to activate touch handling,
 process touches and launch penguins:
 
-    // is called when CCB file has completed loading
-    - (void)didLoadFromCCB {
-        // tell this scene to accept touches
-        self.userInteractionEnabled = TRUE;
-    }
+	// is called when CCB file has completed loading
+	func didLoadFromCCB() {
+		userInteractionEnabled = true
+	}
 
-    // called on every touch in this scene
-    - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-        [self launchPenguin];
-    }
+	// called on every touch in this scene
+	override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
+		launchPenguin()
+	}
 
-    - (void)launchPenguin {
-        // loads the Penguin.ccb we have set up in Spritebuilder
-        CCNode* penguin = [CCBReader load:@"Penguin"];
-        // position the penguin at the bowl of the catapult
-        penguin.position = ccpAdd(_catapultArm.position, ccp(16, 50));
-        
-        // add the penguin to the physicsNode of this scene (because it has physics enabled)
-        [_physicsNode addChild:penguin];
-        
-        // manually create & apply a force to launch the penguin
-        CGPoint launchDirection = ccp(1, 0);
-        CGPoint force = ccpMult(launchDirection, 8000);
-        [penguin.physicsBody applyForce:force];
-    }
+	func launchPenguin() {
+		// loads the Penguin.ccb we have set up in SpriteBuilder
+		let penguin: Penguin = CCBReader.load("Penguin") as Penguin
+		// position the penguin at the bowl of the catapult
+		penguin.position = ccpAdd(catapultArm.position, CGPoint(x: 16, y: 50))
+
+		// add the penguin to the physicsNode of this scene (because it has physics enabled)
+		physicsNode.addChild(penguin)
+
+		// manually create & apply a force to launch the penguin
+		let launchDirection = CGPoint(x: 1, y: 0)
+		let force = ccpMult(launchDirection, 8000)
+		penguin.physicsBody.applyForce(force)
+	}
 
 The explanation for this code is within the comments. However, it is
 surprisingly simple. When you run your app now and touch the screen, you

@@ -48,22 +48,21 @@ SpriteBuilder project published.
 Run the particle effect when a collision occurs
 ===============================================
 
-Open *Gameplay.m* in Xcode. We are now going to add some code that runs
+Open *Gameplay.swift* in Xcode. We are now going to add some code that runs
 our particle effect whenever a seal gets eliminated.
 
 Extend our *sealRemoved* method to look like this:
 
     // load particle effect
-    CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"SealExplosion"];
+    let explosion: CCParticleSystem = CCBReader.load("SealExplosion") as CCParticleSystem
     // make the particle effect clean itself up, once it is completed
-    explosion.autoRemoveOnFinish = TRUE;
+    explosion.autoRemoveOnFinish = true;
     // place the particle effect on the seals position
     explosion.position = seal.position;
     // add the particle effect to the same node the seal is on
-    [seal.parent addChild:explosion];
-    
-    // finally, remove the destroyed seal
-    [seal removeFromParent];
+    seal.parent.addChild(explosion)
+    // finally, remove the seal from the level
+    seal.removeFromParent()
 
 The most is explained in the comments of this snippet. We load a
 particle effect and place it on the seals position directly before we

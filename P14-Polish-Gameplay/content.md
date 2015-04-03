@@ -17,10 +17,10 @@ Implementing the update method
 ==============================
 
 Before we actually implement the update method - add a constant to
-*Gameplay.m* that defines the minimum speed which we will use to check
+*Gameplay.swift* that defines the minimum speed which we will use to check
 if a penguin is slow enough for the round to end:
 
-    static const float MIN_SPEED = 5.f;
+	let minSpeed = CGFloat(5)
 
 The value '5' works good for our physics setting. If you have changed
 the physics properties of your objects you might want to experiment a
@@ -29,28 +29,27 @@ little with this value.
 Now we can implement the *update* method. This method is automatically
 called by Cocos2D every frame.
 
-    - (void)update:(CCTime)delta
-    {
-        // if speed is below minimum speed, assume this attempt is over
-        if (ccpLength(_currentPenguin.physicsBody.velocity) < MIN_SPEED){
-            [self nextAttempt];
-            return;
-        } 
-        
-        int xMin = _currentPenguin.boundingBox.origin.x;
-        
-        if (xMin < self.boundingBox.origin.x) {
-            [self nextAttempt];
-            return;
-        }
-        
-        int xMax = xMin + _currentPenguin.boundingBox.size.width;
-        
-        if (xMax > (self.boundingBox.origin.x + self.boundingBox.size.width)) {
-            [self nextAttempt];
-            return;
-        }
-    }
+	override func update(delta: CCTime) {
+		if let currentPenguin = currentPenguin {
+			// if speed is below minimum speed, assume this attempt is over
+			if ccpLength(currentPenguin.physicsBody.velocity) < minSpeed {
+				nextAttempt()
+				return
+			}
+			   
+			let xMin = currentPenguin.boundingBox().origin.x
+			if (xMin < boundingBox().origin.x) {
+				nextAttempt()
+				return
+			}
+			   
+			let xMax = xMin + currentPenguin.boundingBox().size.width
+			if xMax > (boundingBox().origin.x + boundingBox().size.width) {
+				nextAttempt()
+				return
+			}
+		}
+	}
 
 While this may look a little complicated at first, what actually is
 going on is only a tiny bit of math. We check whether the speed is below
@@ -74,31 +73,27 @@ Cocos2D provides a method called *stopAction:* that can be called on any
 CCNode. However we need a reference (a variable) for the action we want
 to stop. So as a first step create a new member variable:
 
-    @implementation Gameplay {
-        ...
-        
-        CCAction *_followPenguin;
-    }
+	var actionFollow: CCActionFollow?
 
 Then modify the code in *releaseCatapult* to assign the scrolling action
 to this newly created variable:
 
-        // follow the flying penguin
-        _followPenguin = [CCActionFollow actionWithTarget:_currentPenguin worldBoundary:self.boundingBox];
-        [_contentNode runAction:_followPenguin];
+	// follow the flying penguin
+	actionFollow = CCActionFollow(target: currentPenguin, worldBoundary: boundingBox())
+	contentNode.runAction(actionFollow)
 
 Now we are ready to implement the *nextAttempt* method! Add this method
-to *Gameplay.m*:
+to *Gameplay.swift*:
 
-    - (void)nextAttempt {
-        _currentPenguin = nil;
-        [_contentNode stopAction:_followPenguin];
-        
-        CCActionMoveTo *actionMoveTo = [CCActionMoveTo actionWithDuration:1.f position:ccp(0, 0)];
-        [_contentNode runAction:actionMoveTo];
-    }
+	func nextAttempt() {
+		currentPenguin = nil
+		contentNode.stopAction(actionFollow)
+		    
+		let actionMoveTo = CCActionMoveTo(duration: 1, position: CGPoint.zeroPoint)
+		contentNode.runAction(actionMoveTo)
+	}
 
-First we reset the reference to the *\_currentPenguin*, because once an
+First we reset the reference to the *currentPenguin*, because once an
 attempt is completed we consider none of the penguins as current one.
 Then we stop the scrolling action in the second line. Finally we create
 a new action to scroll back to the catapult.
@@ -114,37 +109,17 @@ launched.
 To avoid this happening we will add a flag to the Penguin that stores if
 it has been launched already or not.
 
-Open *Penguin.h* and add this property:
+Open *Penguin.swift* and add this line:
 
-    @property (nonatomic, assign) BOOL launched;
+	var launched = false
 
-To access this new property from *Gameplay.m* we will need to import the
-Penguin header by adding this line to the top of the file:
-
-    #import "Penguin.h"
-
-And change the member variable *\_currentPenguin* to be of type
-*Penguin* instead of *CCNode*
-
-    Penguin *_currentPenguin;
-
-Now you will also have to change the line in *touchBegan*, where the
-penguin is loaded:
-
-    _currentPenguin = (Penguin*)[CCBReader load:@"Penguin"];
-
-You have to change this, because *CCBReader* only returns *CCNodes*, so
-if you know that the "Penguin" file actually contains an object of type
-*Penguin* you have to add a cast as shown in the line above.
-
-Now that we have access to the *launched* property of the penguin, we
+Now that we have a *launched* property one the penguin, we
 can add a check to the update method, so that everything is only
 executed if the penguin has already launched:
 
-    - (void)update:(CCTime)delta
-    {
-        if (_currentPenguin.launched) {
-        ... // <- all previous content of this method belongs inside of this if-statement
+	override func update(delta: CCTime) {
+        if currentPenguin.launched {
+	        ... // <- all previous content of this method belongs inside of this if-statement
         }
     }
 
@@ -154,7 +129,7 @@ As a final step we actually need to set the *launched* flag to *TRUE*,
 once a penguin is fired. Therefore add this line to the
 *releaseCatapult* method:
 
-    _currentPenguin.launched = TRUE;
+    currentPenguin.launched = true
 
 With this important optimization our *next attempt* mechanism is
 completed for now! You just have improved the game quite a bit. Run your

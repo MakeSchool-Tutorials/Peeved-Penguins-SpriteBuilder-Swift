@@ -63,7 +63,7 @@ Code Connections
 
 The second tab on the right panel let's you manage code connections for
 your selected node. One of the things you can do here is set custom
-Objective-C classes for your nodes:
+Swift classes for your nodes:
 
 ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_CodeConnections.png)
 

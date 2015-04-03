@@ -11,7 +11,7 @@ behind our catapult:
 
 ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_animating_preview.png)
 
-Setting up a new .cbb file
+Setting up a new .ccb file
 ==========================
 
 The bear will have it's own .ccb file. Create a new Interface file

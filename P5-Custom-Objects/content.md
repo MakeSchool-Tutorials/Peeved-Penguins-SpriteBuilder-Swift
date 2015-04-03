@@ -14,7 +14,7 @@ Penguins
 
 Let's start with the penguins. We want penguins and seals to each get
 their own .ccb files because they will be mapped to different
-Objective-C classes. That will allow us to distinguish between them
+Swift classes. That will allow us to distinguish between them
 later on when we add the shooting mechanism to our game.
 
 Create a new interface file (Top bar: File\>New\>File) and make sure
@@ -55,9 +55,9 @@ position of the physics body.
 
 Now we have a CCSprite with the correct image and physics body set up.
 Finally, you need to set the custom class property of this interface
-file. Once again, this custom class property links an Objective-C class
+file. Once again, this custom class property links a Swift class
 to this interface file (more on this later). We want the penguin to be
-linked to an Objective-C class called "Penguin" so go the right pane,
+linked to an Swift class called "Penguin" so go the right pane,
 open the second tab, and set the custom class property:
 
 ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_CustomClass.png)
@@ -81,7 +81,7 @@ Create the classes in Xcode
 
 It is worth repeating that the "custom class" property of a .ccb file
 creates a link between the .ccb file in your SpriteBuilder project and
-an Objective-C class in your Xcode project.
+an Swift class in your Xcode project.
 
 For our example this means that whenever someone loads the *Seal.ccb* or
 *Penguin.ccb* file, Spritebuilder will initialize the custom classes we
@@ -89,11 +89,11 @@ have linked (Seal and Penguin).
 
 To make this work, we need to create the Seal and Penguin class in
 Xcode. Open the PeevedPenguins.xcodeproj. Create two new classes (Top
-bar: File\>New\>File\>Objective-C Class) called "Penguin" and "Seal" and
+bar: File\>New\>File\>iOS\>Source\>Cocoa Touch Class) called "Penguin" and "Seal" and
 make them subclasses of CCSprite because the root nodes of Penguin.ccb
-and Seal.ccb are CCSprites as well:
+and Seal.ccb are CCSprites as well and the Language is set to Swift:
 
-![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_Penguin_Xcode.png)
+![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_Penguin_Xcode_Swift.png)
 
 Please create the new file in the *Source* Folder of your project to
 keep a consistent structure:
@@ -108,55 +108,35 @@ Testing that everything worked out
 Since we have made a bunch of changes it would be nice to test if
 everything worked out as expected before we move on. Most importantly we
 want to check if our code connections are working. Publish your
-SpriteBuilder project. Next got to Xcode, open "Penguin.m" and add these
-lines between @implementation and @end:
+SpriteBuilder project. Next got to Xcode, open "Penguin.swift" and add these
+lines between { and }:
 
-    - (id)init {
-        self = [super init];
-        
-        if (self) {
-            CCLOG(@"Penguin created");
-        }
-        
-        return self;
-    }
+	func didLoadFromCCB() {
+		println("Penguin created!")
+	}
 
-Now, everytime the Penguin.ccb file is loaded, "Penguin created" should
-appear in the console. Let's do the same for the Seal.m file. You
+Now, everytime the Penguin.ccb file is loaded, "Penguin created!" should
+appear in the console. Let's do the same for the Seal.swift file. You
 remembered to create it, right? If not, go ahead and create a new Seal
-class in XCode like you did for Penguin. Open it and add these lines
-between @implementation and @end:
+class in Xcode like you did for Penguin. Open it and add these lines
+between { and }:
 
-    - (id)init {
-        self = [super init];
-        
-        if (self) {
-            CCLOG(@"Seal created");
-        }
-        
-        return self;
-    }
+	func didLoadFromCCB() {
+		println("Seal created!")
+	}
 
 So far, so good. Now for testing purposes we should try to load both
-files (penguin.ccb and seal.ccb) from our source code manually to invoke
+files (Penguin.ccb and Seal.ccb) from our source code manually to invoke
 our custom init methods.
 
-Open the file "AppDelegate.m". Add two lines to the bottom of this
-method:
+Open the file "MainScene.swift". Add the following lines between { and }:
 
-    - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-    {
-        [...]
-        
-        [self setupCocos2dWithOptions:cocos2dSetup];
-        
-        [CCBReader load:@"Penguin"];
-        [CCBReader load:@"Seal"];
-        
-        return YES;
-    }
+    func didLoadFromCCB() {
+		CCBReader.load("Penguin")
+		CCBReader.load("Seal")
+	}
 
-Now, when our app starts, the penguin.ccb and seal.ccb files should be
+Now, when our app starts, the Penguin.ccb and Seal.ccb files should be
 loaded immediately, causing a Seal and Penguin object to be initialized.
 Two log messages should appear in your console log. Run the app and
 check the console for the correct output:
@@ -166,8 +146,8 @@ check the console for the correct output:
 *Note: if the console does not appear, check if you have set the two
 options highlighted in the screenshot correctly*
 
-If everything worked out, you should see a "Penguin created" and "Seal
-created" message in your console log. **Congratulations!**.
+If everything worked out, you should see a "Penguin created!" and "Seal
+created!" message in your console log. **Congratulations!**.
 
 If you don't see the message, please go back and check if you have
 performed every step on this page.
@@ -180,6 +160,6 @@ connection and now have a basic understanding of how and where the use
 of SpriteBuilder and Xcode will overlap in your projects.
 
 Now before we move on to the next chapter, let's clean up our test
-methods. **Remove the init methods we have added to Seal.m and
-Penguin.m**. Next, **remove the two lines we have added to the
+methods. **Remove the didLoadFromCCB methods we have added to MainScene.swift, Seal.swift and
+Penguin.swift**. Next, **remove the two lines we have added to the
 AppDelegate**.

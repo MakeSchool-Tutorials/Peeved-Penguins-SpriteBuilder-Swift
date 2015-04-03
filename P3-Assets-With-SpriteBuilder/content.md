@@ -5,7 +5,7 @@ slug: resources-spritebuilder
 
 If you haven't already, create a new project in SpriteBuilder. Don't
 forget you can access the code for the completed game on
-[GitHub](https://github.com/MakeGamesWithUs/Spritebuilder-Getting-Started)!
+[GitHub](https://github.com/MakeSchool/PeevedPenguins-Swift)!
 
 Get started by downloading the [Peeved Penguins art
 pack](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/PeevedPenguinsAssets.zip)

@@ -8,8 +8,7 @@ project:
 
 ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_NewProject.png)
 
-Name your new project “PeevedPenguins”. Once the project is created,
-open Finder and take a look at the folder structure of your project. If
+Name your new project “PeevedPenguins” and change the Primary Language to Swift. Once the project is created, open Finder and take a look at the folder structure of your project. If
 you can't find your project in Finder, search for it using Spotlight at
 the top right of your screen. The folder structure should look something
 like this:

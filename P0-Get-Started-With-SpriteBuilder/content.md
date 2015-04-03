@@ -10,7 +10,7 @@ About this Tutorial
 If you have already installed SpriteBuilder, are familiar with the user
 interface, and know how to create new projects you can skip directly to
 [How to Manage Assets Using
-SpriteBuilder](https://www.makegameswith.us/tutorials/getting-started-with-spritebuilder/resources-spritebuilder/)
+SpriteBuilder](https://www.makeschool.com/tutorials/getting-started-with-spritebuilder/resources-spritebuilder/)
 where you'll get set up with the art you need for this project.
 
 This tutorial will guide you through building your very first
@@ -26,9 +26,9 @@ like:
 ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Peeved_Preview.png)
 
 You can access the code for the completed tutorial on
-[GitHub](https://github.com/MakeGamesWithUs/Spritebuilder-Getting-Started)!
+[GitHub](https://github.com/MakeSchool/PeevedPenguins-Swift)!
 
-[![GitHub](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Github.png)](https://github.com/MakeGamesWithUs/Spritebuilder-Getting-Started)
+[![GitHub](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Github.png)](https://github.com/MakeSchool/PeevedPenguins-Swift)
 
 Installation
 ============
@@ -40,7 +40,7 @@ SpriteBuilder](https://itunes.apple.com/us/app/spritebuilder/id784912885?mt=12)
 and download the latest version. Drag SpriteBuilder onto your dock from
 your Applications folder so that you can easily access it.
 
-Open SpriteBuilder. **Note that you need SpriteBuilder 1.1 for this tutorial.**
+Open SpriteBuilder. **Note that you need SpriteBuilder 1.4 for this tutorial.**
 
 SpriteBuilder Basics
 ====================

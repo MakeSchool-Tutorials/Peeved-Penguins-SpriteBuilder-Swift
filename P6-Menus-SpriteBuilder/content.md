@@ -69,7 +69,7 @@ field:
 ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_Custom_Class_2.png)
 
 The value should be *MainScene*. This value is set by SpriteBuilder by
-default. Alltogether this means: *When the play button is pressed, the
+default. All together this means: *When the play button is pressed, the
 method 'play' of the class 'MainScene' is invoked.*
 
 Finally, publish this project in SpriteBuilder so that the changes are
@@ -79,11 +79,11 @@ Add code to the play method
 ===========================
 
 Now it's time to open Xcode and implement the method we have just
-linked. Open *MainScene.m* and add this dummy implementation of the play
+linked. Open *MainScene.swift* and add this dummy implementation of the play
 method:
 
-    - (void)play {
-        CCLOG(@"play button pressed");
+    func play() {
+    	println("play button pressed")
     }
 
 Now you are ready to run the project. Whenever you touch the play button
@@ -114,10 +114,10 @@ displayed as the current scene. This is quite simple. Use *CCBReader* to
 load the gameplay. Use *CCDirector* to replace the current scene with
 the loaded one:
 
-    - (void)play {
-        CCScene *gameplayScene = [CCBReader loadAsScene:@"Gameplay"];
-        [[CCDirector sharedDirector] replaceScene:gameplayScene];
-    }
+	func play() {
+		let gameplayScene: CCScene = CCBReader.loadAsScene("Gameplay")
+		CCDirector.sharedDirector().replaceScene(gameplayScene)
+	}
 
 Save and Run. Now when you hit the play button a black screen should
 appear. This is our empty game.
