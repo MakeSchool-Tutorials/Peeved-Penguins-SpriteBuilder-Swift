@@ -59,7 +59,7 @@ root". This will cause the method to be invoked on the root node of this
 Now there's one last thing to check before we open Xcode and add some
 code to be executed when the play button is pressed. I just explained
 that the "play" method will be executed on the root node of this .ccb
-file. So let's check that we actually have an Objective-C class linked
+file. So let's check that we actually have a Swift class linked
 to the root node of this .ccb file.
 
 Select the root node, CCNode, on the timeline then open the second tab

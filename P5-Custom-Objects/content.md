@@ -57,7 +57,7 @@ Now we have a CCSprite with the correct image and physics body set up.
 Finally, you need to set the custom class property of this interface
 file. Once again, this custom class property links a Swift class
 to this interface file (more on this later). We want the penguin to be
-linked to an Swift class called "Penguin" so go the right pane,
+linked to a Swift class called "Penguin" so go the right pane,
 open the second tab, and set the custom class property:
 
 ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_CustomClass.png)
@@ -108,7 +108,7 @@ Testing that everything worked out
 Since we have made a bunch of changes it would be nice to test if
 everything worked out as expected before we move on. Most importantly we
 want to check if our code connections are working. Publish your
-SpriteBuilder project. Next got to Xcode, open "Penguin.swift" and add these
+SpriteBuilder project. Next go to Xcode, open "Penguin.swift" and add these
 lines between { and }:
 
 	func didLoadFromCCB() {
@@ -161,5 +161,4 @@ of SpriteBuilder and Xcode will overlap in your projects.
 
 Now before we move on to the next chapter, let's clean up our test
 methods. **Remove the didLoadFromCCB methods we have added to MainScene.swift, Seal.swift and
-Penguin.swift**. Next, **remove the two lines we have added to the
-AppDelegate**.
+Penguin.swift**.

@@ -22,14 +22,14 @@ scoop of the catapult arm. Therefore add these lines to *touchBegan*
 **inside the if-statement**:
 
 	// create a penguin from the ccb-file
-	currentPenguin = CCBReader.load("Penguin") as Penguin?
+	currentPenguin = CCBReader.load("Penguin") as! Penguin?
 	if let currentPenguin = currentPenguin {
-	    // initially position it on the scoop. 34,138 is the position in the node space of the _catapultArm
+	    // initially position it on the scoop. 34,138 is the position in the node space of the catapultArm
 		let penguinPosition = catapultArm.convertToWorldSpace(CGPoint(x: 34, y: 138))
-		// transform the world position to the node space to which the penguin will be added (_physicsNode)
-		currentPenguin.position = physicsNode.convertToNodeSpace(penguinPosition)
+		// transform the world position to the node space to which the penguin will be added (gamePhysicsNode)
+		currentPenguin.position = gamePhysicsNode.convertToNodeSpace(penguinPosition)
 		// add it to the physics world
-		physicsNode.addChild(currentPenguin)
+		gamePhysicsNode.addChild(currentPenguin)
 		// we don't want the penguin to rotate in the scoop
 		currentPenguin.physicsBody.allowsRotation = false
 
@@ -40,8 +40,8 @@ scoop of the catapult arm. Therefore add these lines to *touchBegan*
 Most of this should be quite easy to understand by now. Note, that we
 are first expressing the penguins position relative to the catapult arm.
 Then we are translating this position to world coordinates, and finally
-we convert it to the node space of our *physicsNode*, because that is
-where the penguin is located in. Also note that we turn of rotation for
+we convert it to the node space of our *gamePhysicsNode*, because that is
+where the penguin is located in. Also note that we turn off rotation for
 the penguin so it doesn't rotate in the scoop of the catapult. Let's
 move on to releasing the penguin!
 
@@ -61,7 +61,7 @@ this code inside the if-statement):
 		currentPenguin?.physicsBody.allowsRotation = true
 		 
 		// follow the flying penguin
-		actionFollow = CCActionFollow(target: currentPenguin, worldBoundary: boundingBox())
+		let actionFollow = CCActionFollow(target: currentPenguin, worldBoundary: boundingBox())
 		contentNode.runAction(actionFollow)
 
 Tuning

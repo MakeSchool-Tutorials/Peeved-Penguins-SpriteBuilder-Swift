@@ -54,7 +54,7 @@ Now you have set up your first joint! Hit the publish button in SpriteBuilder.
 Next, open *Gameplay.swift* in Xcode. We're going to activate physics debug drawing. It's a cool feature that visualizes physics bodies and joints and will save you lot of time when you encounter issues with the setup of the physics world. Add these lines to *didLoadFromCCB*:
 
     // visualize physics bodies & joints
-    physicsNode.debugDraw = true
+    gamePhysicsNode.debugDraw = true
 
 Now it's time to run the game and hope that the catapult does not fall apart. Instead the result should look similar to this:
 
