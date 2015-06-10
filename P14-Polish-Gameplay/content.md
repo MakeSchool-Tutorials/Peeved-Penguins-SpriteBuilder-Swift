@@ -22,7 +22,7 @@ if a penguin is slow enough for the round to end:
 
 	let minSpeed = CGFloat(5)
 
-The value '5' works good for our physics setting. If you have changed
+The value '5' works well for our physics setting. If you have changed
 the physics properties of your objects you might want to experiment a
 little with this value.
 
