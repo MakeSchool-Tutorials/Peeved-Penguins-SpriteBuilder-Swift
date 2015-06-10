@@ -131,10 +131,7 @@ As a final step we actually need to set the *launched* flag to *TRUE*,
 once a penguin is fired. Therefore, change the currentPenguin's launched flag to true in the
 *releaseCatapult* method:
 
-    if let joint = mouseJoint {
-            ...
-            currentPenguin!.launched = true
-       }
+    currentPenguin?.launched = true
 
 With this important optimization our *next attempt* mechanism is
 completed for now! You just have improved the game quite a bit. Run your
