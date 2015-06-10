@@ -115,21 +115,26 @@ Open *Penguin.swift* and add this line:
 
 Now that we have a *launched* property one the penguin, we
 can add a check to the update method, so that everything is only
-executed if the penguin has already launched:
+executed if the penguin exists and has already launched:
 
 	override func update(delta: CCTime) {
-        if currentPenguin.launched {
-	        ... // <- all previous content of this method belongs inside of this if-statement
-        }
+		if let currentPenguin = currentPenguin {
+       	    if currentPenguin.launched {
+	       	 ... // <-previous content of this method belongs inside of this if-statement
+       		}
+       }
     }
 
 Now all the checks will only be performed after firing the penguin.
 
 As a final step we actually need to set the *launched* flag to *TRUE*,
-once a penguin is fired. Therefore add this line to the
+once a penguin is fired. Therefore, change the currentPenguin's launched flag to true in the
 *releaseCatapult* method:
 
-    currentPenguin.launched = true
+    if let joint = mouseJoint {
+            ...
+            currentPenguin!.launched = true
+       }
 
 With this important optimization our *next attempt* mechanism is
 completed for now! You just have improved the game quite a bit. Run your
