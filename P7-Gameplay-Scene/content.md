@@ -9,9 +9,8 @@ implementation of the core gameplay!
 Make it pretty
 ==============
 
-Let's start by dragging some art into our new *Gameplay*.ccb file. Start
-by dragging *background.png* to the stage. Set position and anchor point
-to (0,0), this will ensure the background is nicely aligned with the
+Let's start by adding some art to our new *Gameplay*.ccb file. Drag *background.png* onto the stage. Set position and anchor point
+to (0,0); this will ensure the background is nicely aligned with the
 scene borders.
 
 Next, let's add the bear we created previously. Spritebuilder lets you
@@ -24,10 +23,10 @@ from the *Node Library* to the stage. Select *bear.ccb* as *CCB File*:
 Now the bear sprite, including the animation we defined earlier, is part
 of the Gameplay scene!
 
-Now add the *ground.png* to the stage. Set position and anchor point to
+Add *ground.png* to the stage. Set its position and anchor point to
 (0,0).
 
-Finally build the catapult by dragging *catapult.png* and
+Finally, build the catapult by dragging *catapult.png* and
 *catapultarm.png* to the stage. The draw order is top to bottom so if
 you can't see one of your assets it is probably under something. Note
 that you can change the z-order of the objects in your scene by changing
@@ -56,10 +55,10 @@ we need to set up some code connections.
 First, set the custom class of the *Gameplay* root node, CCNode, to
 "Gameplay". Then set up a member variable link for the CCPhysicsNode. We
 want to assign it to *Doc root var* with the variable name
-"physicsNode". This will link this physics node to a variable called
-"physicsNode" of the class "Gameplay":
+"gamePhysicsNode". This will link this physics node to a variable called
+"gamePhysicsNode" of the class "Gameplay":
 
-![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Physic_CodeOutlets.gif)
+![image](codeConnections.gif)
 
 Now we will be able to access the physics node from code. That will
 allow us to add the fired penguins to the scene.
@@ -73,10 +72,10 @@ in the *Gameplay* class.
 Now we will need to switch to Xcode to implement a firing method. First,
 create a new class *Gameplay*. That class needs to be a subclass of
 *CCNode* and language *Swift*. When saving the class, make sure it is in the *Source* folder
-of your project. Add the member variables *physicsNode* and
+of your project. Add the member variables *gamePhysicsNode* and
 *catapultArm* to *Gameplay.swift*:
 
-	weak var physicsNode: CCPhysicsNode!
+	weak var gamePhysicsNode: CCPhysicsNode!
 	weak var catapultArm: CCNode!
 
 <!--explain explicitly unwrapped optionals & let-->
@@ -88,7 +87,7 @@ code.
 Add these three methods to *Gameplay.swift* to activate touch handling,
 process touches and launch penguins:
 
-	// is called when CCB file has completed loading
+	// called when CCB file has completed loading
 	func didLoadFromCCB() {
 		userInteractionEnabled = true
 	}
@@ -100,12 +99,12 @@ process touches and launch penguins:
 
 	func launchPenguin() {
 		// loads the Penguin.ccb we have set up in SpriteBuilder
-		let penguin: Penguin = CCBReader.load("Penguin") as Penguin
+		let penguin: Penguin = CCBReader.load("Penguin") as! Penguin
 		// position the penguin at the bowl of the catapult
 		penguin.position = ccpAdd(catapultArm.position, CGPoint(x: 16, y: 50))
 
-		// add the penguin to the physicsNode of this scene (because it has physics enabled)
-		physicsNode.addChild(penguin)
+		// add the penguin to the gamePhysicsNode (because the penguin has physics enabled)
+		gamePhysicsNode.addChild(penguin)
 
 		// manually create & apply a force to launch the penguin
 		let launchDirection = CGPoint(x: 1, y: 0)

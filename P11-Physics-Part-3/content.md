@@ -4,7 +4,7 @@ slug: collision-detection
 ---
 
 Now you'll learn how to define different collision types and react to
-them. You'll use that knowledge to remove seals when they are crashed by
+them. You'll use that knowledge to remove seals when they are crashed into by
 penguins or ice blocks!
 
 The Cocos2D collision delegate
@@ -16,8 +16,8 @@ of collisions. In our game for example, a meaningful collision is one
 between a *seal* and any other object in the game.
 
 In Cocos2D we can do this by implementing a certain delegate. In
-Objective-C the concept of delegates is always used, when one object
-signs up to get informed on certain events. The one we need to use, to
+Swift the concept of delegates is always used when one object
+signs up to get informed on certain events. The one we need to use to
 get informed about collisions in Cocos2D is called
 *CCPhysicsCollisionDelegate*. Let's add this protocol to *Gameplay.swift*,
 so that we can get information on the collisions going on in our game:
@@ -29,7 +29,7 @@ so that we can get information on the collisions going on in our game:
 Now that we implement the protocol, we can sign up as the collision
 delegate of our physics node. Add this line to *didLoadFromCCB*:
 
-    physicsNode.collisionDelegate = self
+    gamePhysicsNode.collisionDelegate = self
 
 Next, we need to set up a collision type for our seal.
 
@@ -115,13 +115,13 @@ Then change the collision handling method to have the following content:
 		
 		// if energy is large enough, remove the seal
 		if energy > 5000 {
-			physicsNode.space.addPostStepBlock({ () -> Void in
+			gamePhysicsNode.space.addPostStepBlock({ () -> Void in
 				self.sealRemoved(seal)
 			}, key: seal)
 		}
 	}
 
-What exactly are we doing here? First we retrieve the kinetic energy of the collision between the seal and a second object. If this energy is large enough we decide to remove the seal by using the *sealRemoved:* method. But there's one interesting step in between. We call the *space* method of the *physicsNode* and then call *addPostStepBlock* and use the seal removal method from within there. Why are we doing that? It can happen that two objects collide with a seal within one frame (e.g. an ice block and the ground) in such a case the collision handler method would be called twice. We need to ensure that such a situation does not cause an issue in our code. When we place the collision handling code within a block, that we perform using the *addPostStepBlock* method, Cocos2D will ensure that that code will only be run once per physics calculation. Cocos2D ensures that using the *key* property. Cocos2D will only run one code block per key and frame. With this approach, if the collision handler is called three times, we only call the seal removal method once. 
+What exactly are we doing here? First we retrieve the kinetic energy of the collision between the seal and a second object. If this energy is large enough we decide to remove the seal by using the *sealRemoved:* method. But there's one interesting step in between. We call the *space* method of the *gamePhysicsNode* and then call *addPostStepBlock* and use the seal removal method from within there. Why are we doing that? It can happen that two objects collide with a seal within one frame (e.g. an ice block and the ground) in such a case the collision handler method would be called twice. We need to ensure that such a situation does not cause an issue in our code. When we place the collision handling code within a block, that we perform using the *addPostStepBlock* method, Cocos2D will ensure that that code will only be run once per physics calculation. Cocos2D ensures that using the *key* property. Cocos2D will only run one code block per key and frame. With this approach, if the collision handler is called three times, we only call the seal removal method once. 
 
 Finally add the seal removal method to your code:
 

@@ -54,7 +54,7 @@ our particle effect whenever a seal gets eliminated.
 Extend our *sealRemoved* method to look like this:
 
     // load particle effect
-    let explosion: CCParticleSystem = CCBReader.load("SealExplosion") as CCParticleSystem
+    let explosion: CCParticleSystem = CCBReader.load("SealExplosion") as! CCParticleSystem
     // make the particle effect clean itself up, once it is completed
     explosion.autoRemoveOnFinish = true;
     // place the particle effect on the seals position
