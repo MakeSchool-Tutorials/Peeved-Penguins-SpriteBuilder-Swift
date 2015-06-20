@@ -3,9 +3,9 @@ title: Manage Assets with SpriteBuilder
 slug: resources-spritebuilder
 ---
 
-If you haven't already, create a new project in SpriteBuilder. Don't
-forget you can access the code for the completed game on
-[GitHub](https://github.com/MakeSchool/PeevedPenguins-Swift)!
+Create a new project in SpriteBuilder named `PeevedPenguins`
+and change the Primary Language to `Swift`. You can check out
+the code for the completed game on [GitHub](https://github.com/MakeSchool/PeevedPenguins-Swift)!
 
 Get started by downloading the [Peeved Penguins art
 pack](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/PeevedPenguinsAssets.zip)
