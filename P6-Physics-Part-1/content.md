@@ -7,8 +7,7 @@ Now things are going to get real. We are going to implement a
 shooting mechanism. First I'll get started with a short introduction to
 some of the basics you'll need for this step.
 
-What are joints and why do I need them?
-=====================
+#What are joints and why do I need them?
 
 In this step we are going to turn the catapult and the catapult arm into
 physic objects. Unlike the other physics objects we have in our game at
@@ -36,8 +35,7 @@ similar to this:
 The catapult falls apart because we aren't using joints to keep it
 connected! The good news is, that since SpriteBuilder 1.1, we can create joints directly in the editor, making the next step really easy.
 
-Setting up your first joint
-===========================
+#Setting up your first joint
 
 First, let's revise the physics body for the catapult. Make the catapult
 (not the arm!) a **static body** in the right panel. We don't want the
@@ -66,8 +64,7 @@ upright position. *Also note that the shooting mechanism is broken,
 because we changed the anchor point of the catapult arm. That is ok for
 now, we are going to fix it soon.*
 
-Pulling the catapult arm upright
-================================
+#Pulling the catapult arm upright
 
 If you haven't worked with physics in games before, there is one
 important thing to know. While the physics simulation itself is quite
@@ -78,7 +75,7 @@ Now you are going to learn how to apply such a trick to bring the
 catapult in an upright position. We're going to create a joint between
 an invisible node and our catapult arm!
 
-**In Spritebuilder**
+##In Spritebuilder
 
 Open *Gameplay.ccb* in Spritebuilder. Drag a CCNode to the stage and
 place it above the catapult. *Make sure it is a child of the
@@ -105,7 +102,7 @@ So here's what happening when you set all of these values. First we are setting 
 
 Now it's time to publish your SpriteBuilder project again and open Xcode.
 
-**In Xcode**
+##In Xcode
 
 Open *Gameplay.swift* and once again create a member variable for the code connection
 (*pullbackNode*) we created in SpriteBuilder. You wonder why we needed this code connection in the first place? The node that pulls the capult back is invisible and we also don't want it to collide with any other physics object in our game. A property called *collisionMask* allows us to choose with which objects our physics object will collide. If we set the *collisionMask* to an empty array, our object won't collide with any other objects in the game (SpriteBuilder allows editing the *collisionMask* but as of v1.1 it is not yet possible to set an empty collision mask).
@@ -124,14 +121,13 @@ Now you have added the first artificial, invisible, physical force to
 your game! As you can imagine, a lot of cool effects can be implemented
 using this kind of joints.
 
-Implement shooting by dragging the catapult arm
-===============================================
+#Implement shooting by dragging the catapult arm
 
 Now we are going to implement the core mechanic of the game. We want the
 player to be able shoot penguins by dragging the catapult arm back and
 letting it snap.
 
-**Do you have any ideas how we could implement this?**
+##Do you have any ideas how we could implement this?
 
 Just as in the last section, we are going to use a hidden physics node
 and a physics joint to connect the hidden node to the catapult arm. This time however, we will create the physics joint in code and not in SpriteBuilder. We can only create joints in SpriteBuilder when they exist throughout the entire game. If we need to create / destroy joints dynamically we need to do that in code.
@@ -144,8 +140,7 @@ Open Xcode and add these two member variables to *Gameplay.swift*:
 	weak var mouseJointNode: CCNode!
 	var mouseJoint: CCPhysicsJoint?
 
-The basic Dragging concept
-==========================
+##The basic Dragging concept
 
 Here's a short outline of what we are going to do:
 
@@ -155,15 +150,14 @@ Here's a short outline of what we are going to do:
 -   when a touch ends we destroy the joint between the mouseJointNode
     and the catapultArm so that the catapult snaps and fires the penguin
 
-Putting it into code
-====================
+#Putting it into code
 
 First of all, add this line to *didLoadFromCCB* to deactivate collisions
 for this invisible node:
 
     mouseJointNode.physicsBody.collisionMask = []
 
-**When a touch begins**
+##When a touch begins
 
 We are going to **replace** the complete *touchBegan* implementation.
 This is the new one:
@@ -185,7 +179,7 @@ When a touch inside the catapult arm occurs, we move the mouseJointNode
 to that position and set up a joint that will drag the catapult arm
 around. As you can see setting up a physics joint in code is not too complicated either. You use the *CCPhysicsJoint* class and one of the available class initializers to create a joint. As soon as the joint is initialized it automatically becomes part of the active scene. As you can see you get to set the exact same parameters for the joint that you can adjust in SpriteBuilder. We choose an anchor point that matches the bowl of the catapult. Once again - the values for *stiffness* and *damping* are mostly determined experimental. You can use ours or find out if other ones work better for you.
 
-**When a touch moves**
+##When a touch moves
 
 Whenever a touch moves, we need to update the position of the
 mouseJointNode, so that the catapult arm is dragged in the correct
@@ -197,7 +191,7 @@ direction. We can do this by implementing the *touchMoved* method:
 		mouseJointNode.position = touchLocation
 	}
 
-**When a touch ends**
+##When a touch ends
 
 When a touch ends we want to destroy our joint and let the catapult
 snap. Because we will need this code in two places, we are creating a

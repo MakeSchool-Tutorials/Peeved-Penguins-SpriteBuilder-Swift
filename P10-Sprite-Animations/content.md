@@ -9,8 +9,7 @@ chapter you will learn how to create animations with a series of sprite
 files. We will animate penguins while the sit around the catapult,
 waiting to be turned into bullets.
 
-Add the resources
-=================
+#Add the resources
 
 Download these
 [resources](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/animation.zip),
@@ -25,8 +24,7 @@ should look like this:
 
 ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/SpriteBuilder_Sprite_Animation.png)
 
-Create a new interface file
-===========================
+#Create a new interface file
 
 Next, create a new interface file in SpriteBuilder. Call it
 *WaitingPenguin.ccb* and choose *Sprite* as the root node.
@@ -36,8 +34,7 @@ to be the default frame of the new sprite (*animation/1.png*):
 
 ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_AnimatedPenguin.png)
 
-Setup the animation
-===================
+#Setup the animation
 
 SpriteBuilder provides a simple way of setting up frame based
 animations:
@@ -63,8 +60,7 @@ loop:
 Now publish your SpriteBuilder project before adding the waiting
 penguins to the *Gameplay* scene.
 
-Add Penguins to Gameplay Scene
-==============================
+#Add Penguins to Gameplay Scene
 
 Drag *WaitingPenguin.ccb* to the *Gameplay.ccb* to add three waiting
 penguins. Make sure that the waiting penguins are children of the
@@ -77,8 +73,7 @@ blinking and jumping next to the catapult:
 
 ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/SynchPenguinAnimation.gif)
 
-Unsynchronize the animations
-============================
+#Unsynchronize the animations
 
 The animation looks pretty good - however it seems odd that all penguins
 perform them at the exactly same moment. This happens because our
@@ -87,7 +82,7 @@ animation starts as soon as the object enters the screen. We are going
 to change that, by triggering the start of the animation in code,
 instead of using the *Autoplay* setting of the timeline.
 
-As of SpriteBuilder 1.1 we need to have at least one Timeline that has *Autoplay* activated. That means we need to create another empty Timeline before we can turn off *Autoplay* for the current one. 
+As of SpriteBuilder 1.1 we need to have at least one Timeline that has *Autoplay* activated. That means we need to create another empty Timeline before we can turn off *Autoplay* for the current one.
 
 Create a new empty Timeline, rename the timeline with the animation from *Default Timeline* to *BlinkAndJump* and
 deactivate *Autoplay* for it:
@@ -101,8 +96,7 @@ to kick of the animation manually:
 
 Now publish your project and open Xcode!
 
-Add code to run an animation
-============================
+#Add code to run an animation
 
 Create a new class called *WaitingPenguin* and make it a subclass of
 *CCSprite*.

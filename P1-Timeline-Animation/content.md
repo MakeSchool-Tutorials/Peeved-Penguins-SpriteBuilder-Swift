@@ -3,16 +3,13 @@ title: Animate a Character using SpriteBuilder's Timeline
 slug: animating-spritebuilder
 ---
 
-# Creating Animations
-
 Let's learn how to create animations with SpriteBuilder's timeline. For
 our game we want to add a taunting animation to a bear that will sit
 behind our catapult:
 
 ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_animating_preview.png)
 
-Setting up a new .ccb file
-==========================
+#Setting up a new .ccb file
 
 The bear will have it's own .ccb file. Create a new Interface file
 called "Bear.ccb" (Top Bar: File\>New\>File) in your SpriteBuilder
@@ -34,8 +31,7 @@ going to rotate it. When we apply a rotation to a CCNode it rotates
 around its anchor point - for the arm, this should be somewhere near the
 shoulder, which is the top left corner of our image.
 
-Interlude: Keyframe based animations
-====================================
+#Interlude: Keyframe based animations
 
 Before you can create the actual animation you need a basic
 understanding of keyframe based animations. When you create animations
@@ -75,8 +71,7 @@ Once you understand this basic concept the creation of most animations
 will be rather intuitive to you.
 
 
-Setting the animation up
-========================
+#Setting the animation up
 
 Now we can animate the polar bear's arm. In Spritebuilder each animation
 is defined on its own timeline. If you have multiple animations for one
@@ -89,7 +84,7 @@ animation - let's set it to two seconds:
 ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/SetTimelines.gif)
 
 
-# Adding Keyframes
+##Adding Keyframes
 
 Now it's time to add the three key frames we have described earlier.
 Keyframes are created in the timeline at the bottom of the screen. Using

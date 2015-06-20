@@ -8,8 +8,7 @@ more fun!
 
 Time to learn how to create and load levels.
 
-Setup the ground
-================
+#Setup the ground
 
 The levels we are going to load a few minutes from now need to stand on a
 stable ground in the Gameplay scene. So the first thing we will do is to
@@ -34,8 +33,7 @@ moving the pink corners down a few pixels.
 Now we have a solid ground that will stop objects from falling into
 oblivion.
 
-Set up a level loading mechanism
-================================
+#Set up a level loading mechanism
 
 Now we get to solve our first little puzzle. Problem: we want to be able
 to have an unlimited amount of levels in our game. Therefore we don't
@@ -48,7 +46,7 @@ directly to our *Gameplay.ccb*. A better solution is to define an area
 in the *Gameplay.ccb* that is level specific and to load the level data
 into that area.
 
-**Add a Level Node**
+##Add a Level Node
 
 Drag a new CCNode to your timeline; **add it as a child to the
 CCPhysicsNode** because the levels we will be loading will contain
@@ -64,7 +62,7 @@ on. The actual loading will happen in code, so create a code connection
 to make the *levelNode* accessible from the *Gameplay* class. Call the
 variable "levelNode".
 
-**Create a Level**
+##Create a Level
 
 In your Spritebuilder project create a new folder called "Levels".
 Inside that Folder create a new Interface File. Call it "Level1", as SpriteBuilder document type choose "Layer" and set it's size to (490, 275).
@@ -82,7 +80,7 @@ scene could look somewhat like this:
 
 ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_FirstLevel.png)
 
-**Add level loading code**
+##Add level loading code
 
 Now we are going to add some surprisingly simple level loading code.
 Open *Gameplay.swift* in Xcode.
@@ -101,8 +99,7 @@ run your game you should see your level appear in the Gameplay scene:
 
 ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_LevelLoadingWorks.png)
 
-Scrolling the scene
-===================
+#Scrolling the scene
 
 Now that we can shoot penguins, let's improve the experience by
 following the penguin while it flies across our level. Luckily cocos2D
@@ -141,8 +138,7 @@ As you can see the penguin does not collide with the ice blocks yet.
 That's because they aren't physics objects at the moment. Let's change
 that in our next step!
 
-Whack the ice blocks
-====================
+#Whack the ice blocks
 
 Open your SpriteBuilder project and open *Level1.ccb*. Select each ice
 block and enable physics for it. Remember that you can drag the pink
@@ -156,8 +152,7 @@ You now should be able to collide with the ice blocks:
 
 ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_Collision.png)
 
-Adding a level reset
-====================
+#Adding a level reset
 
 Now that we can destroy the level, it also would be great to be able to
 restart easily. Let's add a button to reset the level.
@@ -185,8 +180,7 @@ that the button scrolls of the screen. Yikes!
 problem. It is important to come up with some ideas when you face this
 kind of hurdle.**
 
-Fixing the level reset, part 1
-==============================
+#Fixing the level reset, part 1
 
 Ok. I hope you've spent some time and came up with some ideas. Here's
 our approach. We're going to restructure the Gameplay scene by adding a
@@ -210,8 +204,7 @@ button when we scroll through the Gameplay scene.
 on the top left, while following the penguin? Once again, try to come up
 with your own solution.**
 
-Fixing the level reset, part 2
-==============================
+#Fixing the level reset, part 2
 
 Figured it out? Right, we need to scroll the contentNode instead of the
 Gameplay scene! Add a code connection for the contentNode, so that we

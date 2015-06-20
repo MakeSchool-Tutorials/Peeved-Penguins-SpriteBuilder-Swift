@@ -14,8 +14,7 @@ penguin to the catapult:
 	var currentPenguin: Penguin?
 	var penguinCatapultJoint: CCPhysicsJoint?
 
-Spawn a penguin
-===============
+#Spawn a penguin
 
 When a touch begins, we need to spawn a penguin and attach it to the
 scoop of the catapult arm. Therefore add these lines to *touchBegan*
@@ -45,8 +44,7 @@ where the penguin is located in. Also note that we turn off rotation for
 the penguin so it doesn't rotate in the scoop of the catapult. Let's
 move on to releasing the penguin!
 
-Let it fly
-==========
+#Let it fly
 
 Now we are going to extend the *releaseCatapult* method. We need to
 destroy the joint between the penguin and the scoop, activate rotation
@@ -59,13 +57,12 @@ this code inside the if-statement):
 
 		// after snapping rotation is fine
 		currentPenguin?.physicsBody.allowsRotation = true
-		 
+
 		// follow the flying penguin
 		let actionFollow = CCActionFollow(target: currentPenguin, worldBoundary: boundingBox())
 		contentNode.runAction(actionFollow)
 
-Tuning
-======
+#Tuning
 
 Now run the game and shoot a couple of penguins! You'll probably realize
 that the penguins fly very high. If you like you can do a little of

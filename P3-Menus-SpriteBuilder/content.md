@@ -7,14 +7,12 @@ Now we are going to setup the start menu. That start menu will lead us
 to the gameplay scene that we are going to implement in the next
 chapter.
 
-Remove everything from MainScene.ccb
-====================================
+#Remove everything from MainScene.ccb
 
 We are going to use the MainScene for our main menu so remove the label
 and the background image from the project template.
 
-Set up the background image
-===========================
+#Set up the background image
 
 The art provided for the menu background is designed to work for 3.5
 inch (\<= iPhone 4) and 4 inch (\>= iPhone 5) screens.
@@ -29,8 +27,7 @@ choosing 50% for each:
 Positioning the sprite this way ensures it will always be centered -
 independent of the screen size.
 
-Add the play button
-===================
+#Add the play button
 
 Open the *Node library view* on the left pane and drag a *Button* to the
 stage. Now you need to change a couple of settings, so select the
@@ -43,8 +40,7 @@ retina images. As a last step delete the "title" of the button:
 
 ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_setupButton.png)
 
-Link a method to the play button
-================================
+#Link a method to the play button
 
 We want our game to start when the play button is pressed. So next you
 need to link an action to the play button being pressed. Select the play
@@ -75,8 +71,7 @@ method 'play' of the class 'MainScene' is invoked.*
 Finally, publish this project in SpriteBuilder so that the changes are
 pushed to your Xcode project!
 
-Add code to the play method
-===========================
+#Add code to the play method
 
 Now it's time to open Xcode and implement the method we have just
 linked. Open *MainScene.swift* and add this dummy implementation of the play
@@ -91,8 +86,7 @@ you should see "play button pressed" appear in the console:
 
 ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/PlayButton.gif)
 
-Create the Gameplay Scene
-=========================
+#Create the Gameplay Scene
 
 Now we need to create a new scene. This is where the actual gameplay
 will take place (stay patient, you're only chapter away from
@@ -105,8 +99,7 @@ Gameplay. Select *Layer* as the root node type. Set the size to 960x320:
 
 Hit the publish the button in SpriteBuilder.
 
-Add a transition
-================
+#Add a transition
 
 Now open Xcode again and modify the *play* method in *MainScene*. When
 the play button is pressed we want the Gameplay to be loaded and be

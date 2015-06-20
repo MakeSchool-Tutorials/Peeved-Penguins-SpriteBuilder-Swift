@@ -7,8 +7,7 @@ This chapter will show you another powerful feature of SpriteBuilder -
 you can easily build games that run on smartphones and tablets. Within
 the next minutes you will have an iPad version of *Peeved Penguins*.
 
-Time for some new Assets
-========================
+#Time for some new Assets
 
 As of now we are still using *2x* assets in our game. These are used for
 the iPhone retina version. If we want to support the iPad retina without
@@ -55,8 +54,7 @@ This is already really neat. However, two things are off:
 
 Let's go ahead and fix these issues.
 
-Fixing the user interaction
-===========================
+#Fixing the user interaction
 
 The problem with the user interaction is caused by the root node of our
 scene. The root node is not resizing correctly on the iPad. The size of
@@ -73,8 +71,7 @@ background image - we choose *960 Points*.
 Now the root node will resize correctly when running on larger devices
 and the user interaction will work just as expected.
 
-Fixing the button position
-==========================
+#Fixing the button position
 
 This is an easy one. We need to change the *reference corner* for the
 button to be the top left corner and set the anchor point to the top
@@ -89,8 +86,7 @@ Publish the changes & run the game:
 
 ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/SpriteBuilder_iPad_improved.png)
 
-Well done!
-==========
+#Well done!
 
 You now have a fully functional iPad game. The user interaction works as
 expected and your interface looks great across multiple devices!

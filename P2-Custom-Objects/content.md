@@ -9,8 +9,7 @@ of them! To get rid of them, you shoot penguins at them.
 So next, we want to create the Seal and Penguin objects in
 SpriteBuilder.
 
-Penguins
-========
+#Penguins
 
 Let's start with the penguins. We want penguins and seals to each get
 their own .ccb files because they will be mapped to different
@@ -65,8 +64,7 @@ open the second tab, and set the custom class property:
 That's it for now - our penguin is ready! You will learn how to
 initialize this custom CCSprite subclass very soon!
 
-Seals
-=====
+#Seals
 
 You should be able to create the Seal.ccb file on your own now. Repeat
 all the steps you did for the penguins:
@@ -76,8 +74,7 @@ all the steps you did for the penguins:
 -   Setup a physics body (a circle as shape will do again)
 -   Setup the custom class
 
-Create the classes in Xcode
-===========================
+#Create the classes in Xcode
 
 It is worth repeating that the "custom class" property of a .ccb file
 creates a link between the .ccb file in your SpriteBuilder project and
@@ -102,8 +99,7 @@ keep a consistent structure:
 
 **Don't forget to repeat this step for the Seal class.**
 
-Testing that everything worked out
-==================================
+#Testing that everything worked out
 
 Since we have made a bunch of changes it would be nice to test if
 everything worked out as expected before we move on. Most importantly we
@@ -152,8 +148,7 @@ created!" message in your console log. **Congratulations!**.
 If you don't see the message, please go back and check if you have
 performed every step on this page.
 
-Cleaning up & moving on
-=======================
+#Cleaning up & moving on
 
 You have learned a lot in this chapter. You've set up your first code
 connection and now have a basic understanding of how and where the use

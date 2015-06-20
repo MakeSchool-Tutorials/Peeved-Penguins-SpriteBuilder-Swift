@@ -11,8 +11,7 @@ Get started by downloading the [Peeved Penguins art
 pack](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/PeevedPenguinsAssets.zip)
 we created for you. Once the download is complete, unpack the folder.
 
-Importing resources
-===================
+#Importing resources
 
 Drag the PeevedPenguinsAssets folder into the Resources pane (the empty
 space under MainScene.ccb). This will copy the assets to the correct
@@ -20,8 +19,7 @@ location:
 
 ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_Import_Resources.png)
 
-Adjust the autoscaling settings
-===============================
+#Adjust the autoscaling settings
 
 If you look at the resources folder you will notice that each image is
 only provided in one resolution instead of providing separate assets for
@@ -44,8 +42,7 @@ change Default scaling to 2x (phonehd):
 Now, when you publish through SpriteBuilder, it will auto-generate
 non-retina iPhone assets.
 
-Enabling Smart Sprite Sheet
-===========================
+#Enabling Smart Sprite Sheet
 
 SpriteBuilder has another nice feature you should use in your games:
 *Smart Sprite Sheets*. When you use smart sprite sheets, SpriteBuilder

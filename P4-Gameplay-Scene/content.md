@@ -6,8 +6,7 @@ slug: creating-two-levels
 Time to grab your favorite hot beverage - we're diving right into the
 implementation of the core gameplay!
 
-Make it pretty
-==============
+#Make it pretty
 
 Let's start by adding some art to our new *Gameplay*.ccb file. Drag *background.png* onto the stage. Set position and anchor point
 to (0,0); this will ensure the background is nicely aligned with the
@@ -38,15 +37,14 @@ this:
 
 ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Gameplay1.gif)
 
-Shoot some penguins
-===================
+#Shoot some penguins
 
 We are first going to implement a simple shooting mechanism. In Cocos2D,
 physics objects can only be children of physics nodes. Since the
 penguins we are shooting will engage in the physics simulation, we are
 now going to add a physics node to our scene.
 
-**In Spritebuilder:**
+##In Spritebuilder
 
 Drag a *PhysicsNode* from the *Node Library* to the scene and position
 it at (0,0). We are going to implement the penguin shooting in code so
@@ -67,7 +65,7 @@ Now create another code connection - all on your own. We want the
 *catapultarm* to be accessible through a variable called *catapultArm*
 in the *Gameplay* class.
 
-**In Xcode:**
+##In Xcode
 
 Now we will need to switch to Xcode to implement a firing method. First,
 create a new class *Gameplay*. That class needs to be a subclass of

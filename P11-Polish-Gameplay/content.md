@@ -13,8 +13,7 @@ start.
 We will have to check if any of these conditions become *true* on a
 regular basis - we can use Cocos2D's update method to do so.
 
-Implementing the update method
-==============================
+#Implementing the update method
 
 Before we actually implement the update method - add a constant to
 *Gameplay.swift* that defines the minimum speed which we will use to check
@@ -36,13 +35,13 @@ called by Cocos2D every frame.
 				nextAttempt()
 				return
 			}
-			   
+
 			let xMin = currentPenguin.boundingBox().origin.x
 			if (xMin < boundingBox().origin.x) {
 				nextAttempt()
 				return
 			}
-			   
+
 			let xMax = xMin + currentPenguin.boundingBox().size.width
 			if xMax > (boundingBox().origin.x + boundingBox().size.width) {
 				nextAttempt()
@@ -60,8 +59,7 @@ exited the level through the left or right boundary. If anything of this
 happens, we call the *nextAttempt* method and *return* immediately (to
 avoid that *nextAttempt* is called multiple times).
 
-Implementing the *nextAttempt* method
-=====================================
+#Implementing the *nextAttempt* method
 
 The most important thing we need to do in the *nextAttempt* method is
 scrolling back to the catapult. However, since we already are running an
@@ -88,7 +86,7 @@ to *Gameplay.swift*:
 	func nextAttempt() {
 		currentPenguin = nil
 		contentNode.stopAction(actionFollow)
-		    
+
 		let actionMoveTo = CCActionMoveTo(duration: 1, position: CGPoint.zeroPoint)
 		contentNode.runAction(actionMoveTo)
 	}
@@ -98,8 +96,7 @@ attempt is completed we consider none of the penguins as current one.
 Then we stop the scrolling action in the second line. Finally we create
 a new action to scroll back to the catapult.
 
-Just one more optimization
-==========================
+#Just one more optimization
 
 You may already have realized that there is one potential problem with
 the current solution. Assuming the player pulls back the catapult very

@@ -8,8 +8,7 @@ seal gets eliminated. SpriteBuilder has a great integrated particle
 effect designer which we are going to use to define the style of our
 first particle effect.
 
-Create a new particle effect in SpriteBuilder
-=============================================
+#Create a new particle effect in SpriteBuilder
 
 In SpriteBuilder create a new file:
 
@@ -45,8 +44,7 @@ right pane to manually run your particle effect. Before moving on to the
 next section you should have your particle effect set up and your
 SpriteBuilder project published.
 
-Run the particle effect when a collision occurs
-===============================================
+#Run the particle effect when a collision occurs
 
 Open *Gameplay.swift* in Xcode. We are now going to add some code that runs
 our particle effect whenever a seal gets eliminated.
