@@ -168,7 +168,7 @@ entire scene utilizing the *CCDirector*. Add this implementation to
 
 	func retry() {
 		let gameplayScene: CCScene = CCBReader.loadAsScene("Gameplay")
-		CCDirector.sharedDirector().replaceScene(gameplayScene)
+		CCDirector.sharedDirector().presentScene(gameplayScene)
 	}
 
 Great! Now run the app and make use of the new "Retry" button. Can you

@@ -109,7 +109,7 @@ the loaded one:
 
 	func play() {
 		let gameplayScene: CCScene = CCBReader.loadAsScene("Gameplay")
-		CCDirector.sharedDirector().replaceScene(gameplayScene)
+		CCDirector.sharedDirector().presentScene(gameplayScene)
 	}
 
 Save and Run. Now when you hit the play button a black screen should
