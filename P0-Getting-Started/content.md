@@ -15,7 +15,7 @@ Throughout this tutorial you will learn many concepts including how to:
 - Use the Cocos2D physics engine
 - Load levels from CCB files
 - Use the timeline for sprite frame and key frame animations
-- Make a game that is compatible on both iPhone and iPad
+- Make a game that is compatible with both iPhone and iPad
 
 #The finished product
 
