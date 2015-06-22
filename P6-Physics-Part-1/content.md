@@ -9,12 +9,14 @@ Now things are going to get real. We are going to implement a shooting mechanism
 
 In this step we are going to turn the catapult and the catapult arm into physic objects. Unlike the other physics objects we have in our game at the moment, the catapult consists of two parts that we will need to keep together. Two physics objects can be connected to each other using joints.
 
-Don't understand why you need joints yet? I'll give you a showcase. 
+Don't understand why you need joints yet? I'll give you a showcase.
 
 > [action]
 > Open *Gameplay.ccb* and turn catapult and catapult arm into physics objects. Note that you can add edge points to the shape of a physics body by clicking on a line and dragging a point out:
 >
 > ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_PhysicsBody_Catapult.png)
+
+<!-- Make School -->
 
 > [info]
 >Please be sure that the catapult arm and the catapult are children of your physics node. Every physics object in SpriteBuilder needs to be under a physics node:
@@ -29,12 +31,12 @@ The catapult falls apart because we aren't using joints to keep it connected! Th
 
 #Setting up your first joint
 
-First, let's revise the physics body for the catapult. 
+First, let's revise the physics body for the catapult.
 
 > [action]
 > Make the catapult (not the arm!) a **static body** in the right panel. We don't want the catapult to move around through the scene.
 
-Now, let's add the joint. Three different joints are available in the Node Library (the third tab in the left panel). Right now we want to use *Physics Pivot Joint*. That type of joint connects to physics bodies at a single point. 
+Now, let's add the joint. Three different joints are available in the Node Library (the third tab in the left panel). Right now we want to use *Physics Pivot Joint*. That type of joint connects to physics bodies at a single point.
 
 > [action]
 > Drag the physics pivot joint to the position where you want to connect the two physics bodies. Once you dragged the physics joint to the stage you will see two dots below the joint. Click into each of these dots and drag the mouse pointer to the physics object that shall be connected by this joint:
@@ -76,7 +78,7 @@ Now you are going to learn how to apply such a trick to bring the catapult in an
 >
 > ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_PullbackNode2.png)
 
-Now we need add a joint between the invisible node and the catpult arm. This joint wil hold the catapult arm in its upright position. For this connection we will be using a *Physics Spring Joint*, because as you will see later, this will be a loosely connected and not a very stiff joint. 
+Now we need add a joint between the invisible node and the catpult arm. This joint wil hold the catapult arm in its upright position. For this connection we will be using a *Physics Spring Joint*, because as you will see later, this will be a loosely connected and not a very stiff joint.
 
 > [action]
 > Select it from the Node Library and drag it to the stage. Since the *pullbackNode* doesn't have a size, we need to drag the joint connection point to the timeline to connect to this node. We drag the second connection to the catapult arm:

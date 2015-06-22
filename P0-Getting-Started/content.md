@@ -66,6 +66,8 @@ SpriteBuilder has another nice feature you should use in your games: *Smart Spri
 > [info]
 > When you use smart sprite sheets, SpriteBuilder will automatically generate one large image out of all of your assets. This allows the device to load all your assets into memory at once and will speed things up when your game is running.
 
+<!-- Make School -->
+
 > [action]
 > To transform your Peeved Penguin Assets into a spritesheet, you need to right-click onto the folder and select *Make Smart Sprite Sheet*:
 >

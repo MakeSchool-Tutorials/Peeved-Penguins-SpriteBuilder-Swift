@@ -20,6 +20,8 @@ As of now we are still using *2x* assets in our game. These are used for the iPh
 >
 > ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/SpriteBuilder_AddNewiPadAssets.png)
 
+<!-- Make School -->
+
 > [info]
 > Note that you might have to save / re-open your CCB files for the "missing texture" errors to disappear.
 
@@ -30,7 +32,7 @@ To avoid that images get scaled up on the iPad we need to let SpriteBuilder know
 >
 > ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/SpriteBuilderSettings4x.png)
 
-Great, we're already half way through the process of making our game iPad compatible. 
+Great, we're already half way through the process of making our game iPad compatible.
 
 > [action]
 > Publish your changes and run the game on an *iPad simulator*.
@@ -49,7 +51,7 @@ Let's go ahead and fix these issues.
 
 #Fixing the user interaction
 
-The problem with the user interaction is caused by the root node of our scene. The root node is not resizing correctly on the iPad. The size of the root node is currently still defined in *UI Points*. *UI Points* do not scale up on larger devices. 
+The problem with the user interaction is caused by the root node of our scene. The root node is not resizing correctly on the iPad. The size of the root node is currently still defined in *UI Points*. *UI Points* do not scale up on larger devices.
 
 > [action]
 > Let's change the size of the *Gameplay.ccb* root node in SpriteBuilder:

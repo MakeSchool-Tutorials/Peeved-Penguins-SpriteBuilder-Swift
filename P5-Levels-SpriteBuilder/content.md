@@ -16,12 +16,14 @@ The levels we are going to load a few minutes from now need to stand on a stable
 >
 > ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_PhysicsNode.png)
 >
-> With the ground selected, open up the physics tab in the properties pane (third tab in right pane). Enable physics and set it to "static". 
+> With the ground selected, open up the physics tab in the properties pane (third tab in right pane). Enable physics and set it to "static".
+
+<!-- Make School -->
 
 > [info]
 > Static is used for objects that never move and are not affected by gravity or other forces.
 
-Since our ground is not flat, we need to contract it’s bounds a bit. Otherwise we would have floating objects in some places. 
+Since our ground is not flat, we need to contract it’s bounds a bit. Otherwise we would have floating objects in some places.
 > [action]
 > Contract the ground's bounds by moving the pink corners down a few pixels.
 >
@@ -58,7 +60,7 @@ Your first level and the folder structure should look like this:
 
 ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_Levels.png)
 
-Congratulations, this is your first level! Now let's add some content. 
+Congratulations, this is your first level! Now let's add some content.
 
 > [action]
 > Pull multiple *Seal.ccb* files and different images of ice blocks (*tallblock.png*, etc) to this scene. Be sure to place some items at the very left edge of the level (this way they will be visible when we load the level - even before we have implemented a scrolling mechanism). Your scene could look somewhat like this:
@@ -115,9 +117,11 @@ As you can see the penguin does not collide with the ice blocks yet. That's beca
 #Whack the ice blocks
 
 > [action]
-> Open your SpriteBuilder project and open *Level1.ccb*. 
+> Open your SpriteBuilder project and open *Level1.ccb*.
 >
 > Select each ice block and enable physics for it.
+
+<!-- Make School -->
 
 > [info]
 > Remember that you can drag the pink dots to change the form of the physics body. You should do this if you use the tapered block in your level:
@@ -156,9 +160,9 @@ Great! Now run the app and make use of the new "Retry" button. Can you foresee w
 Ok. I hope you've spent some time and came up with some ideas. Here's our approach. We're going to restructure the Gameplay scene by adding a content Node. All gameplay action will be added to the content Node, all UI elements will be added on top of that content Node, directly to the Gameplay scene.
 
 > [action]
-> Open *Gameplay.ccb* and add a CCNode at position (0,0). This will be our content node. 
+> Open *Gameplay.ccb* and add a CCNode at position (0,0). This will be our content node.
 
-Now restructure the scene in the timeline. 
+Now restructure the scene in the timeline.
 
 > [action]
 > Drag *all Nodes except the button* onto the content node to make them a child of the content node. When you're done your scene hierarchy should look like this:
@@ -171,7 +175,7 @@ OK, you're halfway through this. We've restructured the scene but this doesn't c
 
 #Fixing the level reset for real
 
-Figured it out? Right, we need to scroll the contentNode instead of the Gameplay scene! 
+Figured it out? Right, we need to scroll the contentNode instead of the Gameplay scene!
 
 > [action]
 > Add a code connection for the contentNode, so that we can access it from *Gameplay.swift*.
@@ -180,10 +184,10 @@ When the code connection is set up, open *Gameplay.swift* in Xcode.
 
 > [action]
 > Add the member variable you need for the code connection:
-> 
+>
 >   weak var contentNode: CCNode!
 
-Then modify the actual scrolling code. Make the new content node perform the action instead of the Gameplay Scene. 
+Then modify the actual scrolling code. Make the new content node perform the action instead of the Gameplay Scene.
 
 > [action]
 > Your code for setting up and performing the action should now look like this:

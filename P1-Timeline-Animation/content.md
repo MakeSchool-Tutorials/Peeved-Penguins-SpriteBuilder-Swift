@@ -25,8 +25,12 @@ We need to combine two images to make the bear: the body without an arm, and a s
 >
 > ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_animated_bear.gif)
 
+<!-- Make School -->
+
 > [action]
 > Place *bearnoarms.png* at position (0.0, 0.0).
+
+<!-- Make School -->
 
 > [action]
 > Set the anchor point of *beararm.png* to `(0.0, 1.0)` and it's position to `(-5.0, 10.0)`.

@@ -14,6 +14,8 @@ In Cocos2D we can do this by implementing a certain delegate. In Swift the conce
 > [info]
 > Protocols define a set of methods and properties. They do not implement anything, but they set rules that any class/structure that conforms to this protocol has to follow. By implementing the CCPhysicsCollisionDelegate we are saying that the Gameplay class is capable of handling collisions and should be informed when they happen.
 
+<!-- Make School -->
+
 > [action]
 > Change the beginning of the Gameplay class to implement the CCPhysicsCollisionDelegate:
 >
@@ -21,7 +23,7 @@ In Cocos2D we can do this by implementing a certain delegate. In Swift the conce
 >		...
 >	}
 
-Now that we implement the protocol, we can sign up as the collision delegate of our physics node. 
+Now that we implement the protocol, we can sign up as the collision delegate of our physics node.
 
 > [action]
 > Add this line to *didLoadFromCCB*:
@@ -81,7 +83,7 @@ Now that we know that the collision handler is working, let's implement the actu
 > [action]
 > First go to your Swift bridging header (Supporting files > Bridging-Header.h) and import and additional header that we will need for our collision handler code:
 >
->    #import "CCPhysics+ObjectiveChipmunk.h" 
+>    #import "CCPhysics+ObjectiveChipmunk.h"
 >
 > Then change the collision handling method to have the following content:
 >

@@ -17,7 +17,7 @@ We are going to use the MainScene for our main menu.
 The art provided for the menu background is designed to work for 3.5 inch (<= iPhone 4s) and 4 inch (>= iPhone 5) screens.
 
 > [action]
-> Drag *menubackground.png* to the screen. 
+> Drag *menubackground.png* to the screen.
 >
 > Center the background image on the screen by keeping the default anchor point (0.5, 0.5) and setting the position *relative to % of parent container* for x and y and choosing 50% for each:
 >
@@ -89,12 +89,12 @@ Now that we know the play button works, let's put some real code in it!
 
 > [action]
 > Open Xcode again and modify the *play* method in *MainScene*. When the play button is pressed we want the Gameplay to be loaded and be displayed as the current scene. This is quite simple. Use *CCBReader* to load the gameplay. Use *CCDirector* to replace the current scene with the loaded one:
-> 
+>
 > 	func play() {
 > 		let gameplayScene= CCBReader.loadAsScene("Gameplay")
 > 		CCDirector.sharedDirector().presentScene(gameplayScene)
 > 	}
-> 
+>
 > Save and Run. Now when you hit the play button a black screen should appear. This is our empty game.
 
 Let's bring it to life!

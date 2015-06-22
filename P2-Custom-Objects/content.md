@@ -38,6 +38,8 @@ By default this body is a square. For our flying penguin a *circle* seems like a
 >
 > ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_changePhysicsBody.png)
 
+<!-- Make School -->
+
 > [info]
 > Note, that you can drag the pink points around to adjust the size and position of the physics body.
 

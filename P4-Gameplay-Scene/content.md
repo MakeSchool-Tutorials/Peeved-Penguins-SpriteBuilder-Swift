@@ -12,7 +12,7 @@ Let's start by adding some art to our new *Gameplay*.ccb file.
 > [action]
 > Drag *background.png* onto the stage. Set position and anchor point to (0,0); this will ensure the background is nicely aligned with the scene borders.
 
-Next, let's add the bear we created previously. SpriteBuilder lets you include .ccb files in other .ccb files. This is a *super* powerful feature, and we will make extensive use of it. 
+Next, let's add the bear we created previously. SpriteBuilder lets you include .ccb files in other .ccb files. This is a *super* powerful feature, and we will make extensive use of it.
 
 > [action]
 > Drag a *Sub File* Node from the *Node Library* to the stage. Select *bear.ccb* as *CCB File*:
@@ -24,13 +24,17 @@ Now the bear sprite, including the animation we defined earlier, is part of the 
 > [action]
 > Add *ground.png* to the stage. Set its position and anchor point to (0,0).
 
-Finally, let's build the catapult. 
+Finally, let's build the catapult.
 
 > [action]
-> Drag *catapult.png* and *catapultarm.png* to the stage. 
+> Drag *catapult.png* and *catapultarm.png* to the stage.
+
+<!-- Make School -->
 
 > [info]
 > The draw order is top to bottom so if you can't see one of your assets it is probably under something. Note that you can change the z-order of the objects in your scene by changing the order in the timeline at the bottom of the screen.
+
+<!-- Make School -->
 
 > [action]
 > Now publish your SpriteBuilder project and run it in the Simulator. After the hitting the play button you should see something similar to this:
@@ -58,12 +62,14 @@ Now we will be able to access the physics node from code. That will allow us to 
 > [action]
 > Now create another code connection - all on your own. We want the *catapultarm* to be accessible through a variable called *catapultArm* in the *Gameplay* class.
 
+<!-- Make School -->
+
 > [solution]
 > Look at the steps above for creating a *Doc root var* code connection on *gamePhysicsNode*.
 
 ##In Xcode
 
-Now we will need to switch to Xcode to implement a firing method. 
+Now we will need to switch to Xcode to implement a firing method.
 
 > [action]
 > First, create a new class *Gameplay*. That class needs to be a subclass of *CCNode* and language *Swift*. When saving the class, make sure it is in the *Source* folder of your project.
