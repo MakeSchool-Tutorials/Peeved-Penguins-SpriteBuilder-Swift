@@ -89,28 +89,28 @@ Since we have made a bunch of changes it would be nice to test if everything wor
 > [action]
 > Open "Penguin.swift" and add these this to the Penguin class:
 >
->		func didLoadFromCCB() {
->			println("Penguin created!")
->		}
+>        func didLoadFromCCB() {
+>            println("Penguin created!")
+>        }
 
 Now, everytime the Penguin.ccb file is loaded, "Penguin created!" should appear in the console. Let's do the same for the Seal.swift file. You remembered to create it, right? If not, go ahead and create a new Seal class in Xcode like you did for Penguin.
 
 > [action]
 > Open Seal.swift and add didLoadFromCCB:
 >
-> 	func didLoadFromCCB() {
->			println("Seal created!")
->		}
+>        func didLoadFromCCB() {
+>            println("Seal created!")
+>        }
 
 So far, so good. Now for testing purposes we should try to load both files (Penguin.ccb and Seal.ccb) from our source code manually to invoke our custom didLoadFromCCB methods.
 
 > [action]
 > Open MainScene.swift and add the following code:
 >
-> 	func didLoadFromCCB() {
->			CCBReader.load("Penguin")
->			CCBReader.load("Seal")
->		}
+>        func didLoadFromCCB() {
+>            CCBReader.load("Penguin")
+>            CCBReader.load("Seal")
+>        }
 
 Now, when our app starts, the Penguin.ccb and Seal.ccb files should be loaded immediately, causing a Seal and Penguin object to be initialized. Two log messages should appear in your console log.
 

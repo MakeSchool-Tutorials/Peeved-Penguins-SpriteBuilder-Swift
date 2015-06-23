@@ -52,8 +52,8 @@ Let's activate physics debug drawing. It's a cool feature that visualizes physic
 > [action]
 > Open *Gameplay.swift* in Xcode. Add these lines to *didLoadFromCCB*:
 >
->    // visualize physics bodies & joints
->    gamePhysicsNode.debugDraw = true
+>        // visualize physics bodies & joints
+>        gamePhysicsNode.debugDraw = true
 
 Now it's time to run the game and hope that the catapult does not fall apart. Instead the result should look similar to this:
 
@@ -109,8 +109,8 @@ We are going to set the *collisionMask* inside of *didLoadFromCCB*.
 > [action]
 > Add these lines to *didLoadFromCCB* to deactivate collisions for the *pullbackNode*:
 >
->    // nothing shall collide with our invisible nodes
->    pullbackNode.physicsBody.collisionMask = []
+>        // nothing shall collide with our invisible nodes
+>        pullbackNode.physicsBody.collisionMask = []
 
 Your result should be similar to this one:
 
@@ -133,8 +133,8 @@ Let's start implementing this feature in SpriteBuilder.
 >
 > Open Xcode and add these two member variables to *Gameplay.swift*:
 >
->	weak var mouseJointNode: CCNode!
->	var mouseJoint: CCPhysicsJoint?
+>        weak var mouseJointNode: CCNode!
+>        var mouseJoint: CCPhysicsJoint?
 
 ##The basic Dragging concept
 
@@ -149,7 +149,7 @@ Here's a short outline of what we are going to do:
 > [action]
 > First of all, add this line to *didLoadFromCCB* to deactivate collisions for this invisible node:
 >
->    mouseJointNode.physicsBody.collisionMask = []
+>        mouseJointNode.physicsBody.collisionMask = []
 
 #When a touch begins
 
@@ -158,18 +158,18 @@ We are going to **replace** the complete *touchBegan* implementation.
 > [action]
 > Replace the old `touchBegan` with the one below:
 >
->	override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
->		let touchLocation = touch.locationInNode(contentNode)
->
->		// start catapult dragging when a touch inside of the catapult arm occurs
->		if CGRectContainsPoint(catapultArm.boundingBox(), touchLocation) {
->			// move the mouseJointNode to the touch position
->			mouseJointNode.position = touchLocation
->
->			// setup a spring joint between the mouseJointNode and the catapultArm
->			mouseJoint = CCPhysicsJoint.connectedSpringJointWithBodyA(mouseJointNode.physicsBody, bodyB: catapultArm.physicsBody, anchorA: CGPointZero, anchorB: CGPoint(x: 34, y: 138), restLength: 0, stiffness: 3000, damping: 150)
->		}
->	}
+>        override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
+>            let touchLocation = touch.locationInNode(contentNode)
+>     
+>            // start catapult dragging when a touch inside of the catapult arm occurs
+>            if CGRectContainsPoint(catapultArm.boundingBox(), touchLocation) {
+>                // move the mouseJointNode to the touch position
+>                mouseJointNode.position = touchLocation
+>     
+>                // setup a spring joint between the mouseJointNode and the catapultArm
+>                mouseJoint = CCPhysicsJoint.connectedSpringJointWithBodyA(mouseJointNode.physicsBody, bodyB: catapultArm.physicsBody, anchorA: CGPointZero, anchorB: CGPoint(x: 34, y: 138), restLength: 0, stiffness: 3000, damping: 150)
+>            }
+>        }
 
 When a touch inside the catapult arm occurs, we move the mouseJointNode to that position and set up a joint that will drag the catapult arm around. As you can see setting up a physics joint in code is not too complicated either. You use the *CCPhysicsJoint* class and one of the available class initializers to create a joint. As soon as the joint is initialized it automatically becomes part of the active scene. As you can see you get to set the exact same parameters for the joint that you can adjust in SpriteBuilder. We choose an anchor point that matches the bowl of the catapult. Once again - the values for *stiffness* and *damping* are mostly determined experimental. You can use ours or find out if other ones work better for you.
 
@@ -180,11 +180,11 @@ Whenever a touch moves, we need to update the position of the mouseJointNode, so
 > [action]
 > Add `touchMoved`:
 >
->	override func touchMoved(touch: CCTouch!, withEvent event: CCTouchEvent!) {
->		// whenever touches move, update the position of the mouseJointNode to the touch position
->		let touchLocation = touch.locationInNode(contentNode)
->		mouseJointNode.position = touchLocation
->	}
+>        override func touchMoved(touch: CCTouch!, withEvent event: CCTouchEvent!) {
+>            // whenever touches move, update the position of the mouseJointNode to the touch position
+>            let touchLocation = touch.locationInNode(contentNode)
+>            mouseJointNode.position = touchLocation
+>        }
 
 #When a touch ends
 
@@ -193,28 +193,28 @@ When a touch ends we want to destroy our joint and let the catapult snap. Becaus
 > [action]
 > Add the following method:
 >
->	func releaseCatapult() {
->		if let joint = mouseJoint {
->			// releases the joint and lets the catapult snap back
->			joint.invalidate()
->			mouseJoint = nil
->		}
->	}
+>        func releaseCatapult() {
+>            if let joint = mouseJoint {
+>                // releases the joint and lets the catapult snap back
+>                joint.invalidate()
+>                mouseJoint = nil
+>            }
+>        }
 
 Now we are going to call this method from the *touchEnded* and *touchCancelled* methods:
 
 > [action]
 > Add `touchEnded` and `touchCancelled`:
 >
->	override func touchEnded(touch: CCTouch!, withEvent event: CCTouchEvent!) {
->       // when touches end, meaning the user releases their finger, release the catapult
->		releaseCatapult()
->	}
->
->	override func touchCancelled(touch: CCTouch!, withEvent event: CCTouchEvent!) {
->		// when touches are cancelled, meaning the user drags their finger off the screen or onto something else, release the catapult
->		releaseCatapult()
->	}
+>        override func touchEnded(touch: CCTouch!, withEvent event: CCTouchEvent!) {
+>            // when touches end, meaning the user releases their finger, release the catapult
+>            releaseCatapult()
+>        }
+>     
+>        override func touchCancelled(touch: CCTouch!, withEvent event: CCTouchEvent!) {
+>            // when touches are cancelled, meaning the user drags their finger off the screen or onto something else, release the catapult
+>            releaseCatapult()
+>        }
 
 Now double check you have applied all changes correctly. Then run the game and take a look at the results:
 

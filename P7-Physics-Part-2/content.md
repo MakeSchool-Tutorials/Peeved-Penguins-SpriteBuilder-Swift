@@ -10,8 +10,8 @@ Start by setting up two new member variables, for the penguin we are going to la
 > [action]
 > Add these variables to the Gameplay class:
 >
->	var currentPenguin: Penguin?
->	var penguinCatapultJoint: CCPhysicsJoint?
+>        var currentPenguin: Penguin?
+>        var penguinCatapultJoint: CCPhysicsJoint?
 
 #Spawn a penguin
 
@@ -20,21 +20,21 @@ When a touch begins, we need to spawn a penguin and attach it to the scoop of th
 > [action]
 > Add these lines to *touchBegan* **inside the if-statement**:
 >
->	// create a penguin from the ccb-file
->	currentPenguin = CCBReader.load("Penguin") as! Penguin?
->	if let currentPenguin = currentPenguin {
->	    // initially position it on the scoop. 34,138 is the position in the node space of the catapultArm
->		let penguinPosition = catapultArm.convertToWorldSpace(CGPoint(x: 34, y: 138))
->		// transform the world position to the node space to which the penguin will be added (gamePhysicsNode)
->		currentPenguin.position = gamePhysicsNode.convertToNodeSpace(penguinPosition)
->		// add it to the physics world
->		gamePhysicsNode.addChild(currentPenguin)
->		// we don't want the penguin to rotate in the scoop
->		currentPenguin.physicsBody.allowsRotation = false
->
->		// create a joint to keep the penguin fixed to the scoop until the catapult is released
->		penguinCatapultJoint = CCPhysicsJoint.connectedPivotJointWithBodyA(currentPenguin.physicsBody, bodyB: catapultArm.physicsBody, anchorA: currentPenguin.anchorPointInPoints)
->	}
+>        // create a penguin from the ccb-file
+>        currentPenguin = CCBReader.load("Penguin") as! Penguin?
+>        if let currentPenguin = currentPenguin {
+>            // initially position it on the scoop. 34,138 is the position in the node space of the catapultArm
+>            let penguinPosition = catapultArm.convertToWorldSpace(CGPoint(x: 34, y: 138))
+>            // transform the world position to the node space to which the penguin will be added (gamePhysicsNode)
+>            currentPenguin.position = gamePhysicsNode.convertToNodeSpace(penguinPosition)
+>            // add it to the physics world
+>            gamePhysicsNode.addChild(currentPenguin)
+>            // we don't want the penguin to rotate in the scoop
+>            currentPenguin.physicsBody.allowsRotation = false
+>     
+>            // create a joint to keep the penguin fixed to the scoop until the catapult is released
+>            penguinCatapultJoint = CCPhysicsJoint.connectedPivotJointWithBodyA(currentPenguin.physicsBody, bodyB: catapultArm.physicsBody, anchorA: currentPenguin.anchorPointInPoints)
+>        }
 
 Most of this should be quite easy to understand by now. Note, that we are first expressing the penguins position relative to the catapult arm. Then we are translating this position to world coordinates, and finally we convert it to the node space of our *gamePhysicsNode*, because that is where the penguin is located in. Also note that we turn off rotation for the penguin so it doesn't rotate in the scoop of the catapult. Let's move on to releasing the penguin!
 
@@ -45,16 +45,16 @@ Now we are going to extend the *releaseCatapult* method. We need to destroy the 
 > [action]
 > Add this code inside the if-statement in `releaseCatapult`:
 >
->		// releases the joint and lets the penguin fly
->		penguinCatapultJoint?.invalidate()
->		penguinCatapultJoint = nil
->
->		// after snapping rotation is fine
->		currentPenguin?.physicsBody.allowsRotation = true
->
->		// follow the flying penguin
->		let actionFollow = CCActionFollow(target: currentPenguin, worldBoundary: boundingBox())
->		contentNode.runAction(actionFollow)
+>        // releases the joint and lets the penguin fly
+>        penguinCatapultJoint?.invalidate()
+>        penguinCatapultJoint = nil
+> 
+>        // after snapping rotation is fine
+>        currentPenguin?.physicsBody.allowsRotation = true
+> 
+>        // follow the flying penguin
+>        let actionFollow = CCActionFollow(target: currentPenguin, worldBoundary: boundingBox())
+>        contentNode.runAction(actionFollow)
 
 #Tuning
 

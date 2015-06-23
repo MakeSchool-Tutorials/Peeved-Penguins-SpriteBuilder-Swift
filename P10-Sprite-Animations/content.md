@@ -85,22 +85,22 @@ Now we are going to implement the *didLoadCCB* method where are going to generat
 > [action]
 > Add didLoadFromCCB to the WaitingPenguin class:
 >
->	func didLoadFromCCB() {
->		// generate a random number between 0.0 and 2.0
->		let delay = CCRANDOM_0_1() * 2
->		// call method to start animation after random delay
->		scheduleOnce("startBlinkAndJump", delay: CCTime(delay))
->	}
+>        func didLoadFromCCB() {
+>            // generate a random number between 0.0 and 2.0
+>            let delay = CCRANDOM_0_1() * 2
+>            // call method to start animation after random delay
+>            scheduleOnce("startBlinkAndJump", delay: CCTime(delay))
+>        }
 
 After that we only need to implement the method to start the animation.
 
 > [action]
 > Add startBlinkAndJump to the WaitingPenguin class:
 >
->	func startBlinkAndJump() {
->		// timelines can be referenced and run by name using the animation manager
->		animationManager.runAnimationsForSequenceNamed("BlinkAndJump")
->	}
+>        func startBlinkAndJump() {
+>            // timelines can be referenced and run by name using the animation manager
+>            animationManager.runAnimationsForSequenceNamed("BlinkAndJump")
+>        }
 
 Each timeline can be started referencing it by it's name.
 

@@ -62,9 +62,9 @@ Now it's time to open Xcode and implement the method we have just linked.
 > [action]
 > Open *MainScene.swift* and add this dummy implementation of the play method:
 >
->	 func play() {
->    	println("play button pressed")
->    }
+>        func play() {
+>           println("play button pressed")
+>        }
 
 Now you are ready to run the project!
 
@@ -90,10 +90,10 @@ Now that we know the play button works, let's put some real code in it!
 > [action]
 > Open Xcode again and modify the *play* method in *MainScene*. When the play button is pressed we want the Gameplay to be loaded and be displayed as the current scene. This is quite simple. Use *CCBReader* to load the gameplay. Use *CCDirector* to replace the current scene with the loaded one:
 >
-> 	func play() {
-> 		let gameplayScene= CCBReader.loadAsScene("Gameplay")
-> 		CCDirector.sharedDirector().presentScene(gameplayScene)
-> 	}
+>       func play() {
+>           let gameplayScene= CCBReader.loadAsScene("Gameplay")
+>           CCDirector.sharedDirector().presentScene(gameplayScene)
+>       }
 >
 > Save and Run. Now when you hit the play button a black screen should appear. This is our empty game.
 

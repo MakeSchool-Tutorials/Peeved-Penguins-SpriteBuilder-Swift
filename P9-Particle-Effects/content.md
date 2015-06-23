@@ -39,16 +39,16 @@ Open *Gameplay.swift* in Xcode. We are now going to add some code that runs our 
 > [action]
 > Extend our *sealRemoved* method to look like this:
 >
->    // load particle effect
->    let explosion = CCBReader.load("SealExplosion") as! CCParticleSystem
->    // make the particle effect clean itself up, once it is completed
->    explosion.autoRemoveOnFinish = true;
->    // place the particle effect on the seals position
->    explosion.position = seal.position;
->    // add the particle effect to the same node the seal is on
->    seal.parent.addChild(explosion)
->    // finally, remove the seal from the level
->    seal.removeFromParent()
+>        // load particle effect
+>        let explosion = CCBReader.load("SealExplosion") as! CCParticleSystem
+>        // make the particle effect clean itself up, once it is completed
+>        explosion.autoRemoveOnFinish = true;
+>        // place the particle effect on the seals position
+>        explosion.position = seal.position;
+>        // add the particle effect to the same node the seal is on
+>        seal.parent.addChild(explosion)
+>        // finally, remove the seal from the level
+>        seal.removeFromParent()
 
 The most is explained in the comments of this snippet. We load a particle effect and place it on the seals position directly before we remove the seal from the scene. Particle effects start running automatically, as soon as they are added to a scene.
 

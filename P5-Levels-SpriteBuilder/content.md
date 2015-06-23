@@ -76,12 +76,12 @@ Now we are going to add some surprisingly simple level loading code.
 >
 > Add a member variable after the opening curly brace:
 >
->	weak var levelNode: CCNode!
+>        weak var levelNode: CCNode!
 >
 > and add these lines to the end of the method *didLoadFromCCB*:
 >
->    let level = CCBReader.load("Levels/Level1")
->    levelNode.addChild(level)
+>        let level = CCBReader.load("Levels/Level1")
+>        levelNode.addChild(level)
 
 This will load *level1* and add it as a child to the levelNode. When you run your game you should see your level appear in the Gameplay scene:
 
@@ -101,10 +101,10 @@ To implement our camera that follows the penguin we will use an action called *C
 > [action]
 > Add these lines to the end of the *launchPenguin* method in *Gameplay.swift*:
 >
->    // ensure followed object is in visible are when starting
->    position = CGPoint.zeroPoint
->    let actionFollow = CCActionFollow(target: penguin, worldBoundary: boundingBox())
->    runAction(actionFollow)
+>        // ensure followed object is in visible are when starting
+>        position = CGPoint.zeroPoint
+>        let actionFollow = CCActionFollow(target: penguin, worldBoundary: boundingBox())
+>        runAction(actionFollow)
 
 We are telling the Gameplay scene to act as a camera following the penguin. We also say that the camera shall not leave our scene by using the bounding box of the scene to define the world boundaries.
 
@@ -146,10 +146,10 @@ The implementation is pretty easy. We are just going to reload the entire scene 
 > [action]
 > Add this implementation to *Gameplay.swift*:
 >
->	func retry() {
->		let gameplayScene= CCBReader.loadAsScene("Gameplay")
->		CCDirector.sharedDirector().presentScene(gameplayScene)
->	}
+>       func retry() {
+>           let gameplayScene= CCBReader.loadAsScene("Gameplay")
+>           CCDirector.sharedDirector().presentScene(gameplayScene)
+>       }
 
 Great! Now run the app and make use of the new "Retry" button. Can you foresee what problem is going to come up? Right! The button is part of the Gameplay scene that is scrolling to follow the penguin. This means that the button scrolls of the screen. Yikes!
 
@@ -192,10 +192,10 @@ Then modify the actual scrolling code. Make the new content node perform the act
 > [action]
 > Your code for setting up and performing the action should now look like this:
 >
->    // ensure followed object is in visible are when starting
->    position = CGPoint.zeroPoint
->    let actionFollow = CCActionFollow(target: penguin, worldBoundary: boundingBox())
->    contentNode.runAction(actionFollow)
+>        // ensure followed object is in visible are when starting
+>        position = CGPoint.zeroPoint
+>        let actionFollow = CCActionFollow(target: penguin, worldBoundary: boundingBox())
+>        contentNode.runAction(actionFollow)
 
 Now the content Node is scrolling and not the complete Gameplay scene. Since the content Node is only used to structure the scene and doesn't have a content size, we still use the bounding box of the Gameplay scene to define the world boundaries.
 

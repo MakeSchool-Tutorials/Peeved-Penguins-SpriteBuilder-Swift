@@ -19,16 +19,16 @@ In Cocos2D we can do this by implementing a certain delegate. In Swift the conce
 > [action]
 > Change the beginning of the Gameplay class to implement the CCPhysicsCollisionDelegate:
 >
->	class Gameplay: CCNode, CCPhysicsCollisionDelegate {
->		...
->	}
+>        class Gameplay: CCNode, CCPhysicsCollisionDelegate {
+>            ...
+>        }
 
 Now that we implement the protocol, we can sign up as the collision delegate of our physics node.
 
 > [action]
 > Add this line to *didLoadFromCCB*:
 >
->    gamePhysicsNode.collisionDelegate = self
+>        gamePhysicsNode.collisionDelegate = self
 
 Next, we need to set up a collision type for our seal.
 
@@ -51,9 +51,9 @@ Now we need to implement a delegate method that will inform us when a collision 
 
 Chipmunk, the physics engine integrated in Cocos2D, gives us 4 different delegate methods we can implement (all of them are called in a different step of the collision/simulation). We don't want to dive too deep into this at the moment, so we will focus on the one delegate method we want to use:
 
-	func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, typeA: CCNode!, typeB: CCNode!) {
-		...
-	}
+    func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, typeA: CCNode!, typeB: CCNode!) {
+        ...
+    }
 
 We are going to use this method, because it provides us information on how intense the collision is. We only want to remove seals when they were hit fairly hard.
 
@@ -61,18 +61,18 @@ Chipmunk implemented a clever system for its delegate methods, where it uses the
 
 For our example, where we want to be informed about collisions between seals and all other objects, the method will look like this:
 
-	func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, seal: Seal!, wildcard: CCNode!) {
-		...
-	}
+    func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, seal: Seal!, wildcard: CCNode!) {
+        ...
+    }
 
 The parameter name "seal" in this method is derived from the *collisionType* "seal". The second parameter "wildcard" means any arbitrary object. This means, this delegate method is called when an object with the *collisionType* "seal" collides with any other object.
 
 > [action]
 > Now add this method to *Gameplay.swift*:
 >
->    func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, seal: Seal!, wildcard: CCNode!) {
->        println("Something collided with a seal!")
->    }
+>         func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, seal: Seal!, wildcard: CCNode!) {
+>             println("Something collided with a seal!")
+>         }
 
 Run the game and cause a collision with a seal. You should see the log message appear in the console.
 
@@ -83,28 +83,28 @@ Now that we know that the collision handler is working, let's implement the actu
 > [action]
 > First go to your Swift bridging header (Supporting files > Bridging-Header.h) and import and additional header that we will need for our collision handler code:
 >
->    #import "CCPhysics+ObjectiveChipmunk.h"
+>        #import "CCPhysics+ObjectiveChipmunk.h"
 >
 > Then change the collision handling method to have the following content:
 >
->	func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, seal: Seal!, wildcard: CCNode!) {
->		let energy = pair.totalKineticEnergy
->
->		// if energy is large enough, remove the seal
->		if energy > 5000 {
->			gamePhysicsNode.space.addPostStepBlock({ () -> Void in
->				self.sealRemoved(seal)
->			}, key: seal)
->		}
->	}
+>        func ccPhysicsCollisionPostSolve(pair: CCPhysicsCollisionPair!, seal: Seal!, wildcard: CCNode!) {
+>            let energy = pair.totalKineticEnergy
+>     
+>            // if energy is large enough, remove the seal
+>            if energy > 5000 {
+>                gamePhysicsNode.space.addPostStepBlock({ () -> Void in
+>                    self.sealRemoved(seal)
+>                }, key: seal)
+>            }
+>        }
 
 What exactly are we doing here? First we retrieve the kinetic energy of the collision between the seal and a second object. If this energy is large enough we decide to remove the seal by using the *sealRemoved:* method. But there's one interesting step in between. We call the *space* method of the *gamePhysicsNode* and then call *addPostStepBlock* and use the seal removal method from within there. Why are we doing that? It can happen that two objects collide with a seal within one frame (e.g. an ice block and the ground) in such a case the collision handler method would be called twice. We need to ensure that such a situation does not cause an issue in our code. When we place the collision handling code within a block, that we perform using the *addPostStepBlock* method, Cocos2D will ensure that that code will only be run once per physics calculation. Cocos2D ensures that using the *key* property. Cocos2D will only run one code block per key and frame. With this approach, if the collision handler is called three times, we only call the seal removal method once.
 
 > [action]
 > Finally add the seal removal method to your code:
 >
->	func sealRemoved(seal: Seal) {
->		seal.removeFromParent()
->	}
+>        func sealRemoved(seal: Seal) {
+>            seal.removeFromParent()
+>        }
 
 Great! Now you can implement collision handlers to add functionality to your game!
