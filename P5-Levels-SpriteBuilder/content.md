@@ -151,7 +151,7 @@ The implementation is pretty easy. We are just going to reload the entire scene 
 >           CCDirector.sharedDirector().presentScene(gameplayScene)
 >       }
 
-Great! Now run the app and make use of the new "Retry" button. Can you foresee what problem is going to come up? Right! The button is part of the Gameplay scene that is scrolling to follow the penguin. This means that the button scrolls of the screen. Yikes!
+Great! Now run the app and make use of the new "Retry" button. Can you foresee what problem is going to come up? Right! The button is part of the Gameplay scene that is scrolling to follow the penguin. This means that the button scrolls off the screen. Yikes!
 
 **Before reading on, try to think of possible solutions for this problem. It is important to come up with some ideas when you face this kind of hurdle.**
 
