@@ -79,8 +79,4 @@ Now the button's position will always be defined from the top left corner of the
 
 You now have a fully functional iPad game. The user interaction works as expected and your interface looks great across multiple devices!
 
-#Solution
 
-The solution to this [tutorial is available on GitHub](https://github.com/MakeSchool/PeevedPenguins-Swift).
-
-![](https://static.makegameswith.us/gamernews_images/TVZ2mTmQpl/labtocat.png)
