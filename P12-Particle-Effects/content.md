@@ -21,7 +21,7 @@ When you open the rightmost tab in the right pane you will see a library of othe
 > [action]
 > Double-click the "Smoke" particle effect - we will use it as base for our custom effect.
 
-In the first tab you can see & modify all properties of a particle effect. With a little effort you can turn the smoke template into one that looks very similar to the one in angry birds. 
+In the first tab you can see & modify all properties of a particle effect. With a little effort you can turn the smoke template into one that looks very similar to the one in angry birds.
 
 > [action]
 > You can either copy our values from the image below or create your complete own particle effect:
@@ -46,7 +46,9 @@ Open *Gameplay.swift* in Xcode. We are now going to add some code that runs our 
 >        // place the particle effect on the seals position
 >        explosion.position = seal.position;
 >        // add the particle effect to the same node the seal is on
->        seal.parent.addChild(explosion)
+>        if let parent = seal.parent {
+>           parent.addChild(explosion)
+>        }
 >        // finally, remove the seal from the level
 >        seal.removeFromParent()
 

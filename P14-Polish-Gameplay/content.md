@@ -51,7 +51,7 @@ While this may look a little complicated at first, what actually is going on is 
 
 The most important thing we need to do in the *nextAttempt* method is scrolling back to the catapult. However, since we already are running an action to follow the penguin, we need to stop this action before we start another scrolling action (otherwise Cocos2D would understandably be confused about these two conflicting instructions).
 
-Cocos2D provides a method called *stopAction:* that can be called on any CCNode. However we need a reference (a variable) for the action we want to stop. 
+Cocos2D provides a method called *stopAction:* that can be called on any CCNode. However we need a reference (a variable) for the action we want to stop.
 
 > [action]
 > Create a new member variable:
