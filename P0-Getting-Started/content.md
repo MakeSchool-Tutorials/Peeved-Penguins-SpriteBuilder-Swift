@@ -23,7 +23,7 @@ We'll be making a basic clone of Angry Birds with a catapult launcher and seal e
 
 <!-- TODO: update with gif -->
 
-![](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/SpriteBuilder_iPad_improved.png)
+![iPad improved game](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/SpriteBuilder_iPad_improved.png)
 
 #Feedback
 
