@@ -7,7 +7,7 @@ Shooting penguins is fun. Colliding with seals and ice blocks is even more fun!
 
 Time to learn how to create and load levels.
 
-#Setup the ground
+## Setup the ground
 
 The levels we are going to load a few minutes from now need to stand on a stable ground in the Gameplay scene. So the first thing we will do is to add the *ground* to the *CCPhysicsNode* and setup a physics body for it.
 
@@ -31,13 +31,13 @@ Since our ground is not flat, we need to contract it’s bounds a bit. Otherwise
 
 Now we have a solid ground that will stop objects from falling into oblivion.
 
-#Set up a level loading mechanism
+## Set up a level loading mechanism
 
 Now we get to solve our first little puzzle. Problem: we want to be able to have an unlimited amount of levels in our game. Therefore we don't want the game mechanics (shooting, collision detection, etc.) to be part of the levels. Otherwise we would be in big trouble if we wanted to change them -- we'd need to apply the changes to every level.
 
 This means we are not going to add the information about a level directly to our *Gameplay.ccb*. A better solution is to define an area in the *Gameplay.ccb* that is level specific and to load the level data into that area.
 
-#Add a Level Node
+## Add a Level Node
 
 > [action]
 > Drag a new CCNode to your timeline; **add it as a child to the CCPhysicsNode** because the levels we will be loading will contain physics objects (every physics object in Cocos2D needs to be a child of a CCPhysicsNode).
@@ -51,7 +51,7 @@ This node will be the container for the levels we will be loading later on. The 
 > [action]
 > Create a code connection from *levelNode* to the *Doc root var* "levelNode".
 
-#Create a Level
+## Create a Level
 
 > [action]
 > In your SpriteBuilder project create a new folder called "Levels". Inside that Folder create a new CCB file. Call it "Level1", as SpriteBuilder document type choose "Layer" and set it's size to (490, 275).
@@ -67,7 +67,7 @@ Congratulations, this is your first level! Now let's add some content.
 >
 > ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_FirstLevel.png)
 
-#Add level loading code
+## Add level loading code
 
 Now we are going to add some surprisingly simple level loading code.
 
@@ -87,7 +87,7 @@ This will load *level1* and add it as a child to the levelNode. When you run you
 
 ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_LevelLoadingWorks.png)
 
-#Scrolling the scene
+## Scrolling the scene
 
 Now that we can shoot penguins, let's improve the experience by following the penguin while it flies across our level. Luckily, Cocos2D provides a very convenient way of doing this.
 
@@ -114,7 +114,7 @@ Run your game again and you'll see the camera following the penguin:
 
 As you can see the penguin does not collide with the ice blocks yet. That's because they aren't physics objects at the moment. Let's change that in our next step!
 
-#Whack the ice blocks
+## Whack the ice blocks
 
 > [action]
 > Open your SpriteBuilder project and open *Level1.ccb*.
@@ -132,7 +132,7 @@ Once you're done; publish your SpriteBuilder project and run it again. You now s
 
 ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_Collision.png)
 
-#Adding a level reset
+## Adding a level reset
 
 Now that we can destroy the level, it also would be great to be able to restart easily. Let's add a button to reset the level.
 
@@ -155,7 +155,7 @@ Great! Now run the app and make use of the new "Retry" button. Can you foresee w
 
 **Before reading on, try to think of possible solutions for this problem. It is important to come up with some ideas when you face this kind of hurdle.**
 
-#Fixing the level reset
+## Fixing the level reset
 
 Ok. I hope you've spent some time and came up with some ideas. Here's our approach. We're going to restructure the Gameplay scene by adding a content Node. All gameplay action will be added to the content Node, all UI elements will be added on top of that content Node, directly to the Gameplay scene.
 
@@ -173,7 +173,7 @@ OK, you're halfway through this. We've restructured the scene but this doesn't c
 
 **What is the second change we need to put in place to keep the button on the top left, while following the penguin? Once again, try to come up with your own solution.**
 
-#Fixing the level reset for real
+## Fixing the level reset for real
 
 Figured it out? Right, we need to scroll the contentNode instead of the Gameplay scene!
 
